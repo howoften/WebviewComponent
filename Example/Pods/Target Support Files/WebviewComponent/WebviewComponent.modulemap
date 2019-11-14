@@ -1,0 +1,6 @@
+framework module WebviewComponent {
+  umbrella header "WebviewComponent-umbrella.h"
+
+  export *
+  module * { export * }
+}

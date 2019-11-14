@@ -1,0 +1,141 @@
+{
+  "name": "WebviewComponent",
+  "version": "0.5.7",
+  "summary": "WebviewContainer for webviewloader & jsbridge.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://git.brightcns.cn/Liujiang",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "howoften": "forliujiang@126.com"
+  },
+  "source": {
+    "git": "https://git.brightcns.cn/iOS/webviewcomponent.git",
+    "tag": "0.5.7"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "WebviewComponent/Classes/*.h",
+  "resources": "WebviewComponent/Assets/WebviewComponent.bundle",
+  "frameworks": [
+    "UIKit",
+    "WebKit"
+  ],
+  "dependencies": {
+    "MBProgressHUD": [
+
+    ],
+    "AlipaySDK-iOS": [
+
+    ],
+    "WechatOpenSDK": [
+
+    ]
+  },
+  "pod_target_xcconfig": {
+    "FRAMEWORK_SEARCH_PATHS": "$(inherited) $(PODS_ROOT)/AlipaySDK-iOS $(PODS_ROOT)/WechatOpenSDK",
+    "OTHER_LDFLAGS": "$(inherited) -undefined dynamic_lookup",
+    "ENABLE_BITCODE": "NO"
+  },
+  "subspecs": [
+    {
+      "name": "PAWebView",
+      "source_files": "WebviewComponent/Classes/PAWebView/**/*"
+    },
+    {
+      "name": "Network",
+      "source_files": "WebviewComponent/Classes/Network/**/*"
+    },
+    {
+      "name": "Tools",
+      "source_files": "WebviewComponent/Classes/Tools/**/*"
+    },
+    {
+      "name": "OAuth",
+      "source_files": "WebviewComponent/Classes/OAuth/**/*",
+      "dependencies": {
+        "WebviewComponent/Tools": [
+
+        ],
+        "WebviewComponent/Network": [
+
+        ]
+      }
+    },
+    {
+      "name": "WebJSBridgeManage",
+      "source_files": "WebviewComponent/Classes/WebJSBridgeManage/**/*",
+      "dependencies": {
+        "WebviewComponent/Tools": [
+
+        ],
+        "WebViewJavascriptBridge": [
+          "~> 6.0.2"
+        ]
+      }
+    },
+    {
+      "name": "JSBridgeMessageHandle",
+      "source_files": "WebviewComponent/Classes/JSBridgeMessageHandle/**/*",
+      "dependencies": {
+        "WebviewComponent/Tools": [
+
+        ],
+        "WebviewComponent/WebJSBridgeManage": [
+
+        ]
+      }
+    },
+    {
+      "name": "WebViewLoader",
+      "source_files": "WebviewComponent/Classes/WebViewLoader/**/*",
+      "dependencies": {
+        "WebviewComponent/PAWebView": [
+
+        ],
+        "WebviewComponent/OAuth": [
+
+        ],
+        "WebviewComponent/JSBridgeMessageHandle": [
+
+        ],
+        "WebviewComponent/Tools": [
+
+        ],
+        "WebviewComponent/WebJSBridgeManage": [
+
+        ]
+      }
+    },
+    {
+      "name": "Addition",
+      "source_files": "WebviewComponent/Classes/Addition/**/*",
+      "dependencies": {
+        "WebviewComponent/WebJSBridgeManage": [
+
+        ],
+        "WebviewComponent/Tools": [
+
+        ]
+      }
+    },
+    {
+      "name": "TransportSDK",
+      "source_files": "WebviewComponent/Classes/TransportSDK/**/*",
+      "dependencies": {
+        "WebviewComponent/WebViewLoader": [
+
+        ],
+        "WebviewComponent/Tools": [
+
+        ],
+        "WebviewComponent/WebJSBridgeManage": [
+
+        ]
+      }
+    }
+  ]
+}
