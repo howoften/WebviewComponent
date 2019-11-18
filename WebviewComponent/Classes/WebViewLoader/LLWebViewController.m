@@ -173,7 +173,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
             decisionHandler(WKNavigationActionPolicyCancel);
         }else if (!self.webFinished && webView.backForwardList.backList.count > 0) {
             decisionHandler(WKNavigationActionPolicyCancel);
-        }else if (self.webFinished && (navigationAction.navigationType == WKNavigationTypeOther || navigationAction.navigationType == WKNavigationTypeLinkActivated) && navigationAction.targetFrame.request) {
+        }else if (self.webFinished && ((navigationAction.navigationType == WKNavigationTypeOther && navigationAction.targetFrame.mainFrame) || navigationAction.navigationType == WKNavigationTypeLinkActivated)) {
             UIViewController *next = [self.delegate viewControllerForForwardSkip:navigationAction.request.URL title:self.constantTitle shouldShare:self.shouldShare];
             [self.navigationController pushViewController:next animated:YES];
             decisionHandler(WKNavigationActionPolicyCancel);
@@ -185,7 +185,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
         [self.delegate webViewDidReceiveNavigationAction:navigationAction];
     }
 //    decisionHandler(WKNavigationActionPolicyAllow);
-//    NSLog(@"%@||||%@", NSStringFromSelector(_cmd), webView.isLoading ? @"webview加载中" : @"webview加载结束");
+//    NSLog(@"%@||||%@", NSStringFromSelector(_cmd), navigationAction.request.URL);
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
@@ -194,13 +194,13 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
    
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
 
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 // 在收到响应后，决定是否跳转
@@ -211,7 +211,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     
     [LLJSMessageNavigationBarHandler autoNavigationBackButtonForViewController:self webView:webView mode:self.leftBarMode];
     
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 #pragma mark <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

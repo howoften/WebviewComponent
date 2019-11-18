@@ -115,7 +115,7 @@
                      @"id":@"414245413",
                      @"name":@"美团",
                      },
-             @"openapp.jdmoble":@{
+             @"openapp.jdmobile":@{
                      @"url":@"https://itunes.apple.com/cn/app/id414245413?mt=8",
                      @"id":@"414245413",
                      @"name":@"京东",
@@ -251,7 +251,7 @@
 <string>snssdk141</string>
  
 <!-- 京东 URL Scheme 白名单-->
-<string>openapp.jdmoble</string>
+<string>openapp.jdmobile</string>
 
 <!-- 滴滴 URL Scheme 白名单-->
 <string>diditaxi</string>

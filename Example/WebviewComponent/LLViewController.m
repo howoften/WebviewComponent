@@ -38,7 +38,7 @@
 - (IBAction)present:(id)sender {
     [LLWebviewLoader setProgressBarTintColor:[UIColor redColor]];
     [LLWebviewLoader setProgressBarTrackTintColor:[UIColor blackColor]];
-    if ([self.url.text hasPrefix:@"http"]) {
+    if ([self.url.text length] > 0) {
         [LLWebviewLoader loadWebViewByURL:[NSURL URLWithString:self.url.text] fromSourceViewController:self.navigationController title:nil shouleShare:YES];
     }else {
 //    [LLWebviewLoader loadWebViewByURL:[NSURL URLWithString:@"https://find.test.brightcns.cn/#/OauthPage"] fromSourceViewController:self.navigationController title:nil shouleShare:YES];
