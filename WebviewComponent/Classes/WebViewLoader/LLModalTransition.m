@@ -10,6 +10,9 @@
 
 @interface LLModalTransition ()<UIViewControllerAnimatedTransitioning, UINavigationControllerDelegate>
 @property (nonatomic, strong)UIView *snapshot;
+@property (nonatomic) CATransform3D foldTransform;
+//@property (nonatomic, strong)UIView *dimingView;
+
 @end
 
 //static BOOL isEnter = YES;
@@ -90,12 +93,9 @@ NSString *const ViewControllerModalStyleFold = @"ViewControllerModalStyleFold";
             toView.transform = CGAffineTransformMakeTranslation(0, CGRectGetHeight(containerView.frame)-CGRectGetMinY(fromView.frame));
             [containerView addSubview:toView];
             
-            CATransform3D form1 = CATransform3DIdentity;
-            form1.m34 = 1.0/-600;
-            form1 = CATransform3DRotate(form1, 3.0 * M_PI/180.0, 1, 0, 0);
             fromView.layer.zPosition = -1000.f;
             [UIView animateWithDuration:[self transitionDuration:transitionContext]/2 animations:^{
-                fromView.layer.transform = form1;
+                fromView.layer.transform = self.foldTransform;
             } completion:nil];
 
             [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -165,6 +165,15 @@ NSString *const ViewControllerModalStyleFold = @"ViewControllerModalStyleFold";
 - (UIView *)snapshot {
     return [[UIApplication sharedApplication].keyWindow snapshotViewAfterScreenUpdates:NO];
 }
+
+- (CATransform3D)foldTransform {
+    _foldTransform = CATransform3DIdentity;
+    _foldTransform.m34 = 1.0/-600;
+    _foldTransform = CATransform3DScale(_foldTransform, 0.95, 0.95, 1);
+    
+    return _foldTransform;
+}
+
 
 + (BOOL)validModalStyle:(NSString *)style {
     if (![style isKindOfClass:[NSString class]]) {
