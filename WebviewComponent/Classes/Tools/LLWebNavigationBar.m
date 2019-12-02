@@ -193,20 +193,24 @@ static const void *kNavigationBarKey = &kNavigationBarKey;
 
 - (void)t_viewWillAppear:(BOOL)animated {
     if ([self isKindOfClass:[[config.contributeVC class] class]]) {
-        
-        if (self.view.subviews.lastObject != self.navigationBar) {
-            if (self.navigationBar) {
-                if (!self.navigationBar.superview) { //xib bug
-                    UIColor *foregroundColor = self.navigationBar.backgroundColor;
-                    self.navigationBar = nil;
-                    [self.navigationBar removeFromSuperview];
-                    self.navigationBar = [[LLWebNavigationBar alloc] init];
-                    [self.view addSubview:self.navigationBar];
-                    self.navigationBar.backgroundColor = foregroundColor;
-                }else {
-                    [self.view bringSubviewToFront:self.navigationBar];
+        if (self.navigationController) {
+            if (self.view.subviews.lastObject != self.navigationBar) {
+                if (self.navigationBar) {
+                    if (!self.navigationBar.superview) { //xib bug
+                        UIColor *foregroundColor = self.navigationBar.backgroundColor;
+                        self.navigationBar = nil;
+                        [self.navigationBar removeFromSuperview];
+                        self.navigationBar = [[LLWebNavigationBar alloc] init];
+                        [self.view addSubview:self.navigationBar];
+                        self.navigationBar.backgroundColor = foregroundColor;
+                    }else {
+                        [self.view bringSubviewToFront:self.navigationBar];
+                    }
                 }
             }
+        }else if (self.navigationBar) {
+            [self.navigationBar removeFromSuperview];
+            self.navigationBar = nil;
         }
     }
 }

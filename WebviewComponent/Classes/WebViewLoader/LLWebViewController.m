@@ -46,6 +46,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
             self.constantTitle = title;
         }
         if (@available(iOS 11.0, *)) {
+            self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
 //            self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight-self.webview.scrollView.contentInset.top, 0, kSafeAreaBottomMargin-self.webview.scrollView.contentInset.bottom, 0);
         }else {
             self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight, 0, kSafeAreaBottomMargin, 0);
@@ -78,6 +79,8 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
             self.constantTitle = title;
         }
         if (@available(iOS 11.0, *)) {
+            self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentScrollableAxes;
+
             //            self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight-self.webview.scrollView.contentInset.top, 0, kSafeAreaBottomMargin-self.webview.scrollView.contentInset.bottom, 0);
         }else {
             self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight, 0, kSafeAreaBottomMargin, 0);

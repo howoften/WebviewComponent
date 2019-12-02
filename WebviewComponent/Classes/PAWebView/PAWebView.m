@@ -237,7 +237,7 @@ static PAWebView *baseWebview = nil;
         _config.processPool = [[WKProcessPool alloc] init];
         NSMutableString *javascript = [NSMutableString string];
         [javascript appendString:@"document.documentElement.style.webkitTouchCallout='none';"];//禁止长按
-        //[javascript appendString:@"document.documentElement.style.webkitUserSelect='none';"];//禁止选择
+        [javascript appendString:@"document.documentElement.style.webkitUserSelect='none';"];//禁止选择
         NSString *noZoom = @"var script = document.createElement('meta');"
         "script.name = 'viewport';"
         "script.content=\"width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no\";"
@@ -245,7 +245,7 @@ static PAWebView *baseWebview = nil;
         WKUserScript *noneZoomScript = [[WKUserScript alloc] initWithSource:noZoom injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
         WKUserScript *noneSelectScript = [[WKUserScript alloc] initWithSource:javascript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
         [_config.userContentController addUserScript:noneSelectScript];
-        [_config.userContentController addUserScript:noneZoomScript];
+//        [_config.userContentController addUserScript:noneZoomScript];
     }
     return _config;
 }
