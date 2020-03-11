@@ -281,7 +281,7 @@
 				ORGANIZATIONNAME = howoften;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = VSU3CW8QUS;
+						DevelopmentTeam = RJ9SHE83UJ;
 						ProvisioningStyle = Automatic;
 					};
 					6003F5AD195388D20070C39A = {
@@ -580,7 +580,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1008;
-				DEVELOPMENT_TEAM = VSU3CW8QUS;
+				DEVELOPMENT_TEAM = RJ9SHE83UJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -612,7 +612,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1008;
-				DEVELOPMENT_TEAM = VSU3CW8QUS;
+				DEVELOPMENT_TEAM = RJ9SHE83UJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

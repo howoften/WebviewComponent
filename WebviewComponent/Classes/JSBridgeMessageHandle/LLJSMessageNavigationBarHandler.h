@@ -15,6 +15,7 @@ typedef void(^Change)(NSString *);
 @protocol LLJSMessageNavigationActionDelegate <NSObject>
 @optional
 
+@property (nonatomic)BOOL canBeVisible;
 @property (nonatomic)BOOL shouldShare;
 @property (nonatomic, strong)NSString *constantTitle;
 @property (nonatomic)NSUInteger leftBarMode;

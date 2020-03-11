@@ -78,10 +78,11 @@
    */
 
       document.getElementById('handler1').onclick = function (e) {
-            log('js call objc: setProgressViewTintColor')
-                                   bridge.callHandler('setProgressViewTintColor', {'color':'#ff0000', 'payInfo':'base64'}, function(response) {
+           /* log('js call objc: setProgressViewTintColor')
+                                   bridge.callHandler('hahaha', {'color':'#ff0000', 'payInfo':'base64'}, function(response) {
                  log('JS got response', response)
-            })
+            })*/
+                                   window.open('https://www.baidu.com');
      }
     document.getElementById('handler2').onclick = function (e) {
                                    log('js call objc: registerListener')

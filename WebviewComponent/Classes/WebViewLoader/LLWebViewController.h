@@ -12,7 +12,7 @@
 
 @protocol LLWebViewControllerDelegate <NSObject>
 - (void)webViewDidReceiveSocialShareForWebView:(WKWebView *)webview webManager:(PAWebView *)webManager;
-- (UIViewController *)viewControllerForForwardSkip:(NSURL *)URL title:(NSString *)title shouldShare:(BOOL)shouldShare;
+- (__kindof UIViewController *)viewControllerForForwardSkip:(NSURL *)URL title:(NSString *)title shouldShare:(BOOL)shouldShare;
 - (void)webViewDidReceiveNavigationAction:(WKNavigationAction *)navigationAction;
 @end
 
@@ -25,6 +25,7 @@ extern NSString *const LLWebViewDidCloseNotification;
 @property (nonatomic, strong)UIColor *progressBarTrackTintColor;
 @property (nonatomic)BOOL isAuthPage;
 @property (nonatomic)BOOL shouldShare;
+@property (nonatomic)BOOL canBeVisible; //用于授权 redirect-page临时过渡页面, 为不可见页面
 @property (nonatomic, strong)NSString *constantTitle;
 @property (nonatomic)NSUInteger leftBarMode;
 @property (nonatomic)NSUInteger rightBarMode;

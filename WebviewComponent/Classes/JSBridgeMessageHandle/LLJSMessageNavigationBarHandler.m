@@ -101,7 +101,14 @@ void(^moreAction)(void) = NULL;
 }
 
 + (void)autoNavigationBackButtonForViewController:(UIViewController<LLJSMessageNavigationActionDelegate> *)viewController webView:(WKWebView *)webView mode:(NSUInteger)mode {
-    if (webView.backForwardList.backList.count > 0 || viewController.navigationController.childViewControllers.count > 1) {
+    int visiblePage = 0;
+    NSArray *allVC = viewController.navigationController.viewControllers;
+    for (id<LLJSMessageNavigationActionDelegate> subVC in allVC) {
+        if (subVC.canBeVisible) {
+            visiblePage++;
+        }
+    }
+    if ((webView.backForwardList.backList.count > 0 || visiblePage > 1) ) {
         if (viewController.navigationItem.leftBarButtonItem == nil || viewController.leftBarMode != mode) {
             viewController.leftBarMode = mode;
             UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];

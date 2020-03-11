@@ -26,7 +26,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
    
-    
+    //@"https://lzgj.test.brightcns.cn/gateway"
+    //https://lzgj.brightcns.com/gateway
     [LLOAuthManager setWebViewOAuthRequestURL:@"https://lzgj.test.brightcns.cn/gateway" delegate:self];
 //    [self setNeedsStatusBarAppearanceUpdate];
     [LLWebviewLoader observeLocalizedWebViewNavigationActionForURL:@"liangla://main/certificate" didMeet:^(NSString *meetURL) {
@@ -74,8 +75,7 @@
 - (void)webViewAuthTokenForRequestParameter:(NSDictionary *)parameter didFinished:(void (^)(NSString *dic))finished {
    
     if (finished) {
-        finished(@"762876a6e0ba1aba9056d6ebc09d414e");
-//        finished(self.sessionID.text);
+        finished(self.sessionID.text);
     }
 }
 

@@ -20,7 +20,7 @@
         [[LLWebLocationManager defaultManager] requestLocationInfo:^(NSDictionary *dic, NSError *error) {
             if (error || !dic[@"longitude"] || !dic[@"latitude"]) {
                 if (callback) {
-                    callback(@{@"code":@(-1), @"msg":error.localizedDescription});
+                    callback(@{@"code":@(-1), @"msg":error.localizedDescription!=nil ? error.localizedDescription:@"Locate Fail"});
                 }
             }else {
                 if (callback) {

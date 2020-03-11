@@ -40,6 +40,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
         self.webview = webView;
         self.fileURL = fileURL;
         self.URL = nil;
+        self.canBeVisible = YES;
         self.webview.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
         if (title.length > 0) {
             self.navigationItem.attributeTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18*[UIScreen mainScreen].bounds.size.width/375 weight:UIFontWeightMedium], NSForegroundColorAttributeName:[UIColor blackColor]}];
@@ -73,6 +74,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
         self.webview = webView;
         self.URL = URL;
         self.fileURL = nil;
+        self.canBeVisible = YES;
         self.webview.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
         if (title.length > 0) {
             self.navigationItem.attributeTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18*[UIScreen mainScreen].bounds.size.width/375 weight:UIFontWeightMedium], NSForegroundColorAttributeName:[UIColor blackColor]}];
@@ -174,9 +176,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
             [NSURL openURL:navigationAction.request.URL];
             
             decisionHandler(WKNavigationActionPolicyCancel);
-        }else if (!self.webFinished && webView.backForwardList.backList.count > 0) {
-            decisionHandler(WKNavigationActionPolicyCancel);
-        }else if (self.webFinished && ((navigationAction.navigationType == WKNavigationTypeOther && navigationAction.targetFrame.mainFrame) || navigationAction.navigationType == WKNavigationTypeLinkActivated)) {
+        }else if (self.webFinished && (1 && navigationAction.navigationType == WKNavigationTypeLinkActivated)) {
             UIViewController *next = [self.delegate viewControllerForForwardSkip:navigationAction.request.URL title:self.constantTitle shouldShare:self.shouldShare];
             [self.navigationController pushViewController:next animated:YES];
             decisionHandler(WKNavigationActionPolicyCancel);
@@ -189,6 +189,19 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     }
 //    decisionHandler(WKNavigationActionPolicyAllow);
 //    NSLog(@"%@||||%@", NSStringFromSelector(_cmd), navigationAction.request.URL);
+}
+
+- (nullable WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+    if(navigationAction.targetFrame == nil || !navigationAction.targetFrame.isMainFrame)
+    {
+        UIViewController *next = [self.delegate viewControllerForForwardSkip:navigationAction.request.URL title:self.constantTitle shouldShare:self.shouldShare];
+        [self.navigationController pushViewController:next animated:YES];
+    }else {
+        [webView loadRequest:navigationAction.request];
+        
+    }
+    return nil;
+    
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
@@ -221,8 +234,10 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 
 - (void)webviewOAuthDidFinishedWithRedirectURL:(NSString *)redirectURL {
     if (self.navigationController && [self.delegate respondsToSelector:@selector(viewControllerForForwardSkip:title:shouldShare:)]) {
-        UIViewController *next = [self.delegate viewControllerForForwardSkip:[NSURL URLWithString:redirectURL] title:self.constantTitle shouldShare:self.shouldShare];
-        [next.navigationItem setHidesBackButton:YES];
+        LLWebViewController *next = [self.delegate viewControllerForForwardSkip:[NSURL URLWithString:redirectURL] title:self.constantTitle shouldShare:self.shouldShare];
+        [next.navigationItem setHidesBackButton:self.navigationController.viewControllers.count < 2];
+        self.canBeVisible = NO;
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
         [self.navigationController pushViewController:next animated:YES];
     }else {
         NSURLRequest *authRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:redirectURL]];
@@ -249,7 +264,19 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     if ([self.webview canGoBack]) {
         [self goBack];
     }else if(self.navigationController.childViewControllers.count > 1) {
-        [self.navigationController popViewControllerAnimated:YES];
+        NSArray *viewControllers = self.navigationController.viewControllers;
+        LLWebViewController *backVC = nil;
+        for (int i = (int)viewControllers.count-2; i > -1; i--) {
+            LLWebViewController *viewController = viewControllers[i];
+            if ([viewController isKindOfClass:[LLWebViewController class]] && viewController.canBeVisible) {
+                backVC = viewController;
+                break;
+            }
+        }
+        if (backVC) {
+            [self.navigationController popToViewController:backVC animated:YES];
+            
+        }
     }else if (self.navigationController.presentingViewController) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
