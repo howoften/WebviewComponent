@@ -12,6 +12,7 @@
 #import "LLWebViewHelper.h"
 @interface JSMessageScanQRCodeHandler ()<LLWebJSBridgeMessageDelegate, QRCodeScanneDelegate>
 @property (nonatomic)UIStatusBarStyle originalStatusBarStyle;
+@property (nonatomic, strong)NSString *scanResult;
 @property (nonatomic, strong)void(^callBack)(id);
 @end
 
@@ -48,6 +49,19 @@
     [self.view addSubview:scanner];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    if (![self.scanResult isKindOfClass:[NSString class]]) {
+        if (self.callBack) {
+            self.callBack(@{@"code":@-1, @"msg":@"fail"});
+        }
+    }else if (self.callBack) {
+        self.callBack(@{@"code":@0, @"responseData":@{@"code":self.scanResult, @"status": @"0"}, @"msg":@"success"});
+        self.callBack = nil;
+    }
+}
+
 - (void)backAction {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -65,15 +79,9 @@
 }
 
 - (void)didFinshedScanningQRCode:(NSString *)result {
-    if (![result isKindOfClass:[NSString class]]) {
-        if (self.callBack) {
-            self.callBack(@{@"code":@-1, @"msg":@"fail"});
-        }
-    }else if (self.callBack) {
-         self.callBack(@{@"code":@0, @"responseData":@{@"code":result, @"status": @"0"}, @"msg":@"success"});
-        self.callBack = nil;
-    }
-        [self.navigationController popViewControllerAnimated:YES];
+    self.scanResult = result;
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
