@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString * const LLWebScanQRCodeResultNotificationName;
 @interface LLWebViewHelper : NSObject
 
 + (UIViewController *)topViewController;

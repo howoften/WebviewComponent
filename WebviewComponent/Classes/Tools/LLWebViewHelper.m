@@ -7,6 +7,7 @@
 
 #import "LLWebViewHelper.h"
 
+NSString * const LLWebScanQRCodeResultNotificationName = @"LLWebScanQRCodeResultNotificationName";
 @implementation LLWebViewHelper
 + (UIViewController *)topViewController {
     

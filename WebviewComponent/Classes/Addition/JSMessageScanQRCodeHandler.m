@@ -59,6 +59,7 @@
     }else if (self.callBack) {
         self.callBack(@{@"code":@0, @"responseData":@{@"code":self.scanResult, @"status": @"0"}, @"msg":@"success"});
         self.callBack = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLWebScanQRCodeResultNotificationName object:nil userInfo:@{@"data":self.scanResult}];
     }
 }
 

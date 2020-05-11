@@ -230,7 +230,8 @@ static PAWebView *baseWebview = nil;
     if (_config == nil) {
         _config = [[WKWebViewConfiguration alloc] init];
         _config.userContentController = [[WKUserContentController alloc] init];
-        _config.allowsInlineMediaPlayback = YES;        // 允许在线播放
+        _config.allowsInlineMediaPlayback = YES;        // 允许inline播放
+        _config.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeVideo;
         _config.preferences = [[WKPreferences alloc] init];
         _config.preferences.minimumFontSize = 10;
         _config.preferences.javaScriptEnabled = YES; //是否支持 JavaScript

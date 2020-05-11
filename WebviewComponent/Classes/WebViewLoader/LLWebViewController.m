@@ -122,7 +122,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     [LLJSMessageNavigationBarHandler moreActionsForWebView:^{
         [self.webManager callMenuPageByControl:[LLWebViewHelper topViewController].navigationController];
     }];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveQRCodeScanResult:) name:LLWebScanQRCodeResultNotificationName object:nil];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000 && TARGET_OS_IOS
     if (@available(iOS 13.0, *)) {
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
@@ -245,6 +245,19 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     }
 }
 
+- (void)didReceiveQRCodeScanResult:(NSNotification *)notification {
+    NSString *data = notification.userInfo[@"data"];
+    if ([data containsString:@"://"]) {
+        if (self.navigationController && [self.delegate respondsToSelector:@selector(viewControllerForForwardSkip:title:shouldShare:)]) {
+            LLWebViewController *next = [self.delegate viewControllerForForwardSkip:[NSURL URLWithString:data] title:self.constantTitle shouldShare:self.shouldShare];
+            [self.navigationController pushViewController:next animated:YES];
+        }else {
+            NSURLRequest *authRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:data]];
+            [self.webview loadRequest:authRequest];
+        }
+    }
+}
+
 - (void)goBack {
     self.manualBackFlag = YES;
     if ([self.webview canGoBack]) {
@@ -332,9 +345,10 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     return _contentView;
 }
 
-- (void)removeObserver:(id)observer {
-    [self.webview removeObserver:observer forKeyPath:@"URL"];
-    [self.webview removeObserver:observer forKeyPath:@"estimatedProgress"];
+- (void)dealloc {
+    [self.webview removeObserver:self forKeyPath:@"URL"];
+    [self.webview removeObserver:self forKeyPath:@"estimatedProgress"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:LLWebScanQRCodeResultNotificationName];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
