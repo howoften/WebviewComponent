@@ -9,7 +9,6 @@
 #import "LLAppDelegate.h"
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
-#import <WXApi.h>
 
 @implementation LLAppDelegate
 
@@ -23,10 +22,7 @@
     //启动更新检查SDK
     [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"cdde9e585a4ef1e44ab12d89ce15db92"];
     
-    [WXApi registerApp:@"wx86e28a9748b03984" universalLink:@"https://lzgj.test.brightcns.cn/weixin"];
-    [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString *log) {
-        NSLog(@"log : %@", log);
-    }];
+   
     return YES;
 }
 

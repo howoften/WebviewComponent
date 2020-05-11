@@ -53,7 +53,7 @@
 + (void)openURL:(NSURL *)URL {
     if ([URL.absoluteString.lowercaseString containsString:@"itunes.apple"] ||
         [URL.absoluteString.lowercaseString containsString:@"itms-appss"]||
-        [URL.absoluteString.lowercaseString containsString:@"itunesconnect.apple.com"]) {
+        [URL.absoluteString.lowercaseString containsString:@"itunesconnect.apple.com"] || [URL.absoluteString.lowercaseString containsString:@"apps.apple.com"]) {
         [UIAlertController PAlertWithTitle:[NSString stringWithFormat:@"即将打开AppStore下载应用"] message:@"如果不是本人操作，请取消" action1Title:@"取消" action2Title:@"打开" action1:^{
             return;
         } action2:^{

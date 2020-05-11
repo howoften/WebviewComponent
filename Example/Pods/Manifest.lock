@@ -1,99 +1,63 @@
 PODS:
-  - AlipaySDK-iOS (15.5.9)
-  - IQKeyboardManager (6.5.3)
   - MBProgressHUD (1.1.0)
-  - WebviewComponent (0.5.7):
-    - AlipaySDK-iOS
+  - WebviewComponent (0.6.2):
     - MBProgressHUD
-    - WebviewComponent/Addition (= 0.5.7)
-    - WebviewComponent/JSBridgeMessageHandle (= 0.5.7)
-    - WebviewComponent/Network (= 0.5.7)
-    - WebviewComponent/OAuth (= 0.5.7)
-    - WebviewComponent/PAWebView (= 0.5.7)
-    - WebviewComponent/Tools (= 0.5.7)
-    - WebviewComponent/TransportSDK (= 0.5.7)
-    - WebviewComponent/WebJSBridgeManage (= 0.5.7)
-    - WebviewComponent/WebViewLoader (= 0.5.7)
-    - WechatOpenSDK
-  - WebviewComponent/Addition (0.5.7):
-    - AlipaySDK-iOS
+    - WebviewComponent/Addition (= 0.6.2)
+    - WebviewComponent/JSBridgeMessageHandle (= 0.6.2)
+    - WebviewComponent/Network (= 0.6.2)
+    - WebviewComponent/OAuth (= 0.6.2)
+    - WebviewComponent/PAWebView (= 0.6.2)
+    - WebviewComponent/Tools (= 0.6.2)
+    - WebviewComponent/WebJSBridgeManage (= 0.6.2)
+    - WebviewComponent/WebViewLoader (= 0.6.2)
+  - WebviewComponent/Addition (0.6.2):
     - MBProgressHUD
     - WebviewComponent/Tools
     - WebviewComponent/WebJSBridgeManage
-    - WechatOpenSDK
-  - WebviewComponent/JSBridgeMessageHandle (0.5.7):
-    - AlipaySDK-iOS
+  - WebviewComponent/JSBridgeMessageHandle (0.6.2):
     - MBProgressHUD
     - WebviewComponent/Tools
     - WebviewComponent/WebJSBridgeManage
-    - WechatOpenSDK
-  - WebviewComponent/Network (0.5.7):
-    - AlipaySDK-iOS
+  - WebviewComponent/Network (0.6.2):
     - MBProgressHUD
-    - WechatOpenSDK
-  - WebviewComponent/OAuth (0.5.7):
-    - AlipaySDK-iOS
+  - WebviewComponent/OAuth (0.6.2):
     - MBProgressHUD
     - WebviewComponent/Network
     - WebviewComponent/Tools
-    - WechatOpenSDK
-  - WebviewComponent/PAWebView (0.5.7):
-    - AlipaySDK-iOS
+  - WebviewComponent/PAWebView (0.6.2):
     - MBProgressHUD
-    - WechatOpenSDK
-  - WebviewComponent/Tools (0.5.7):
-    - AlipaySDK-iOS
+  - WebviewComponent/Tools (0.6.2):
     - MBProgressHUD
-    - WechatOpenSDK
-  - WebviewComponent/TransportSDK (0.5.7):
-    - AlipaySDK-iOS
-    - MBProgressHUD
-    - WebviewComponent/Tools
-    - WebviewComponent/WebJSBridgeManage
-    - WebviewComponent/WebViewLoader
-    - WechatOpenSDK
-  - WebviewComponent/WebJSBridgeManage (0.5.7):
-    - AlipaySDK-iOS
+  - WebviewComponent/WebJSBridgeManage (0.6.2):
     - MBProgressHUD
     - WebviewComponent/Tools
     - WebViewJavascriptBridge (~> 6.0.2)
-    - WechatOpenSDK
-  - WebviewComponent/WebViewLoader (0.5.7):
-    - AlipaySDK-iOS
+  - WebviewComponent/WebViewLoader (0.6.2):
     - MBProgressHUD
     - WebviewComponent/JSBridgeMessageHandle
     - WebviewComponent/OAuth
     - WebviewComponent/PAWebView
     - WebviewComponent/Tools
     - WebviewComponent/WebJSBridgeManage
-    - WechatOpenSDK
   - WebViewJavascriptBridge (6.0.3)
-  - WechatOpenSDK (1.8.6)
 
 DEPENDENCIES:
-  - IQKeyboardManager
   - WebviewComponent (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - AlipaySDK-iOS
-    - IQKeyboardManager
+  https://github.com/CocoaPods/Specs.git:
     - MBProgressHUD
     - WebViewJavascriptBridge
-    - WechatOpenSDK
 
 EXTERNAL SOURCES:
   WebviewComponent:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AlipaySDK-iOS: 1c5283b30977a24acecc0114662697f7dc78f618
-  IQKeyboardManager: c2f901164d56807a35788483584d09fa69192e8e
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  WebviewComponent: 0382029557064ccf9848f703139e1dce009b74dd
+  WebviewComponent: 8ed0e7bcf7cc52aee3d40b7e1efacec6f135e363
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
-  WechatOpenSDK: 368ae03b72ee3ea1328c4f11326fbb5d2721d118
 
-PODFILE CHECKSUM: 7ca1771703ddbb3267d00a9514f5a7fb71d3890a
+PODFILE CHECKSUM: 0e23bbb82d34501232a4965567ad8aab62981c40
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

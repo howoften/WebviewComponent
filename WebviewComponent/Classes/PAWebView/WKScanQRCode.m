@@ -210,7 +210,11 @@ FOUNDATION_EXPORT NSString* const JSSearchImageFromHtml; //抓取图片
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:showActionTip animated:YES completion:nil];
+            UIViewController *presentingVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+            while (presentingVC.presentedViewController) {
+                presentingVC = presentingVC.presentedViewController;
+            }
+            [presentingVC presentViewController:showActionTip animated:YES completion:nil];
         });
     
 }

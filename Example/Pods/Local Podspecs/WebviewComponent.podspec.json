@@ -1,6 +1,6 @@
 {
   "name": "WebviewComponent",
-  "version": "0.5.7",
+  "version": "0.6.2",
   "summary": "WebviewContainer for webviewloader & jsbridge.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://git.brightcns.cn/Liujiang",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://git.brightcns.cn/iOS/webviewcomponent.git",
-    "tag": "0.5.7"
+    "tag": "0.6.2"
   },
   "platforms": {
     "ios": "9.0"
@@ -26,12 +26,6 @@
   ],
   "dependencies": {
     "MBProgressHUD": [
-
-    ],
-    "AlipaySDK-iOS": [
-
-    ],
-    "WechatOpenSDK": [
 
     ]
   },
@@ -118,21 +112,6 @@
 
         ],
         "WebviewComponent/Tools": [
-
-        ]
-      }
-    },
-    {
-      "name": "TransportSDK",
-      "source_files": "WebviewComponent/Classes/TransportSDK/**/*",
-      "dependencies": {
-        "WebviewComponent/WebViewLoader": [
-
-        ],
-        "WebviewComponent/Tools": [
-
-        ],
-        "WebviewComponent/WebJSBridgeManage": [
 
         ]
       }

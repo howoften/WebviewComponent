@@ -172,7 +172,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     }else{
         if ([LLOAuthManager canResponseForWebviewNavigationAction:navigationAction]) {
             [LLOAuthManager decidePolicyForViewController:self webView:webView navigationAction:navigationAction decisionHandler:decisionHandler];
-        }else if ((![navigationAction.request.URL.absoluteString hasPrefix:@"http"] && ![navigationAction.request.URL.absoluteString hasPrefix:@"file"]) || (([navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itunes.apple"] || [navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itms-appss"]||                [navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itunesconnect.apple.com"]))) {
+        }else if ((![navigationAction.request.URL.absoluteString hasPrefix:@"http"] && ![navigationAction.request.URL.absoluteString hasPrefix:@"file"]) || ([navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itunes.apple"] || [navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itms-appss"]||                [navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itunesconnect.apple.com"] || [navigationAction.request.URL.absoluteString.lowercaseString.lowercaseString containsString:@"apps.apple.com"])) {
             [NSURL openURL:navigationAction.request.URL];
             
             decisionHandler(WKNavigationActionPolicyCancel);
