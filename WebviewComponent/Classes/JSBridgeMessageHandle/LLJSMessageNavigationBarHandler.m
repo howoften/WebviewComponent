@@ -104,7 +104,7 @@ void(^moreAction)(void) = NULL;
     int visiblePage = 0;
     NSArray *allVC = viewController.navigationController.viewControllers;
     for (id<LLJSMessageNavigationActionDelegate> subVC in allVC) {
-        if (subVC.canBeVisible) {
+        if (![subVC respondsToSelector:@selector(canBeVisible)] || subVC.canBeVisible) {
             visiblePage++;
         }
     }
