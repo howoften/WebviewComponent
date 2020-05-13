@@ -71,12 +71,10 @@ static PAWebView *baseWebview = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if (!self.onlyProvider) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.view addSubview:self.webView];
-            [self addBackButton];
-            [self configMenuItem];
-        });
+     if (!self.onlyProvider) {
+        [self.view addSubview:self.webView];
+        [self addBackButton];
+        [self configMenuItem];
     }
 }
 
