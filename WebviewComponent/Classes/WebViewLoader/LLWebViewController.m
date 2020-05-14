@@ -111,16 +111,11 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     [self.webview.scrollView.superview sendSubviewToBack:self.webProvider];
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.extendedLayoutIncludesOpaqueBars = YES;
-    if (self.URL) {
-        self.webProvider.text = [NSString stringWithFormat:@"此网页由 %@ 提供", self.URL.host];
-    }else if (self.fileURL) {
-        self.webProvider.text = self.fileURL.absoluteString;
-        self.webProvider.textAlignment = NSTextAlignmentLeft;
-    }
+
     [self.webview addObserver:self forKeyPath:@"URL" options:NSKeyValueObservingOptionNew context:nil];
     [self.webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [LLJSMessageNavigationBarHandler moreActionsForWebView:^{
-        [self.webManager callMenuPageByControl:[LLWebViewHelper topViewController].navigationController];
+        [self.webManager callMenuPageByControl];
     }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveQRCodeScanResult:) name:LLWebScanQRCodeResultNotificationName object:nil];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000 && TARGET_OS_IOS
@@ -164,15 +159,26 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 //
 //}
 
+- (void)refreshWebviewVendor:(NSURL *)url {
+    if ([url.absoluteString hasPrefix:@"http"]) {
+        self.webProvider.text = [NSString stringWithFormat:@"此网页由 %@ 提供", url.host];
+    }else if (url.absoluteString.length > 0) {
+        self.webProvider.text = url.absoluteString;
+        self.webProvider.textAlignment = NSTextAlignmentLeft;
+    }else {
+        self.webProvider.text = @"unknown";
+    }
+}
 
 #pragma mark - WKNavigationDelegate >>>>>>>>>>>>>>>>
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    [self refreshWebviewVendor:webView.URL];
     if (self.navigationController.topViewController != self) {
         decisionHandler(WKNavigationActionPolicyCancel);
     }else{
         if ([LLOAuthManager canResponseForWebviewNavigationAction:navigationAction]) {
             [LLOAuthManager decidePolicyForViewController:self webView:webView navigationAction:navigationAction decisionHandler:decisionHandler];
-        }else if ((![navigationAction.request.URL.absoluteString hasPrefix:@"http"] && ![navigationAction.request.URL.absoluteString hasPrefix:@"file"]) || ([navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itunes.apple"] || [navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itms-appss"]||                [navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itunesconnect.apple.com"] || [navigationAction.request.URL.absoluteString.lowercaseString.lowercaseString containsString:@"apps.apple.com"])) {
+        }else if ((![navigationAction.request.URL.absoluteString hasPrefix:@"http"] && ![navigationAction.request.URL.absoluteString hasPrefix:@"file"]) || ([navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itunes.apple"] || [navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itms-appss"]||[navigationAction.request.URL.absoluteString.lowercaseString containsString:@"itunesconnect.apple.com"] || [navigationAction.request.URL.absoluteString.lowercaseString.lowercaseString containsString:@"apps.apple.com"])) {
             [NSURL openURL:navigationAction.request.URL];
             
             decisionHandler(WKNavigationActionPolicyCancel);
@@ -248,13 +254,8 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 - (void)didReceiveQRCodeScanResult:(NSNotification *)notification {
     NSString *data = notification.userInfo[@"data"];
     if ([data containsString:@"://"]) {
-        if (self.navigationController && [self.delegate respondsToSelector:@selector(viewControllerForForwardSkip:title:shouldShare:)]) {
-            LLWebViewController *next = [self.delegate viewControllerForForwardSkip:[NSURL URLWithString:data] title:self.constantTitle shouldShare:self.shouldShare];
-            [self.navigationController pushViewController:next animated:YES];
-        }else {
-            NSURLRequest *authRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:data]];
-            [self.webview loadRequest:authRequest];
-        }
+        NSURLRequest *authRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:data]];
+        [self.webview loadRequest:authRequest];
     }
 }
 

@@ -113,7 +113,7 @@ FOUNDATION_EXPORT NSString* const JSSearchImageFromHtml; //抓取图片
     [self.observerView evaluateJavaScript:hrefJS completionHandler:nil];
     
     //调用JS方法
-    NSString *hrefFunc = [NSString stringWithFormat:@"JSSearchHref(%f,%f);",x,y];
+    NSString *hrefFunc = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).href;",x,y];
     [self.observerView evaluateJavaScript:hrefFunc completionHandler:^(id _Nullable href, NSError * _Nullable error)
     {
         callback?callback(href):NULL;
@@ -125,12 +125,7 @@ FOUNDATION_EXPORT NSString* const JSSearchImageFromHtml; //抓取图片
         NSString *type = t;
         NSString *innerTitle = title;
         NSString *imgUrlString = imageUrl;
-        if ((!imageUrl || [imageUrl isEqualToString:@""] ||
-             !([imgUrlString.lowercaseString containsString:@".jpg"] ||
-               [imgUrlString.lowercaseString containsString:@".jpeg"]||
-               [imgUrlString.lowercaseString containsString:@".png"] ||
-               [imgUrlString.lowercaseString containsString:@".gif"]))
-            && (innerTitle.length <= 0))
+        if (![imgUrlString isKindOfClass: [NSString class]] || ![imgUrlString hasPrefix:@"http"])
         {
             return;
         }
@@ -181,19 +176,23 @@ FOUNDATION_EXPORT NSString* const JSSearchImageFromHtml; //抓取图片
         }];
     
         //添加图片相关的操作
-        if ([imgUrlString.lowercaseString containsString:@".jpg"] ||
-            [imgUrlString.lowercaseString containsString:@".jpeg"]||
-            [imgUrlString.lowercaseString containsString:@".png"] ||
-            [imgUrlString.lowercaseString containsString:@".gif"])
-        {
-            [showActionTip addAction:ActionloadImage];
-            [showActionTip addAction:ActionShareImage];
-            if (url) {
-                [showActionTip addAction:ActionSacn];
-            }
-            [showActionTip addAction:ActionCopyImageLink];
-        }
-    
+//        if ([imgUrlString.lowercaseString containsString:@".jpg"] ||
+//            [imgUrlString.lowercaseString containsString:@".jpeg"]||
+//            [imgUrlString.lowercaseString containsString:@".png"] ||
+//            [imgUrlString.lowercaseString containsString:@".gif"])
+//        {
+//            [showActionTip addAction:ActionloadImage];
+//            [showActionTip addAction:ActionShareImage];
+//            if (url) {
+//                [showActionTip addAction:ActionSacn];
+//            }
+//            [showActionTip addAction:ActionCopyImageLink];
+//        }
+    [showActionTip addAction:ActionloadImage];
+    [showActionTip addAction:ActionCopyImageLink];
+    if (url) {
+        [showActionTip addAction:ActionSacn];
+    }
         //添加链接复制操作
         if (href) {
             [showActionTip addAction:ActionCopyHref];
@@ -209,13 +208,13 @@ FOUNDATION_EXPORT NSString* const JSSearchImageFromHtml; //抓取图片
             return;
         }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIViewController *presentingVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-            while (presentingVC.presentedViewController) {
-                presentingVC = presentingVC.presentedViewController;
-            }
-            [presentingVC presentViewController:showActionTip animated:YES completion:nil];
-        });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIViewController *presentedVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        while (presentedVC.presentedViewController) {
+            presentedVC = presentedVC.presentedViewController;
+        }
+        [presentedVC presentViewController:showActionTip animated:YES completion:nil];
+    });
     
 }
 

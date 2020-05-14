@@ -70,8 +70,8 @@ static PAWebView *baseWebview = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-     if (!self.onlyProvider) {
+    
+    if (!self.onlyProvider) {
         [self.view addSubview:self.webView];
         [self addBackButton];
         [self configMenuItem];
@@ -228,8 +228,7 @@ static PAWebView *baseWebview = nil;
     if (_config == nil) {
         _config = [[WKWebViewConfiguration alloc] init];
         _config.userContentController = [[WKUserContentController alloc] init];
-        _config.allowsInlineMediaPlayback = YES;        // 允许inline播放
-        _config.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeVideo;
+        _config.allowsInlineMediaPlayback = YES;        // 允许在线播放
         _config.preferences = [[WKPreferences alloc] init];
         _config.preferences.minimumFontSize = 10;
         _config.preferences.javaScriptEnabled = YES; //是否支持 JavaScript
@@ -543,15 +542,15 @@ static PAWebView *baseWebview = nil;
         else if (buttonIndex == 3)
         {
             /*! 刷新 */
-            [_webView reloadFromOrigin];
+            [_webView reload];
         }
 //
     }];
 }
 
-- (UIAlertController *)callMenuPageByControl:(UIViewController *)control {
+- (void)callMenuPageByControl {
     NSArray *buttonTitleArray = @[@"safari打开", @"复制链接", @"分享", @"刷新"];
-    return [UIAlertController ba_actionSheetShowInViewController:control title:@"更多" message:nil buttonTitleArray:buttonTitleArray buttonTitleColorArray:nil popoverPresentationControllerBlock:^(UIPopoverPresentationController * _Nonnull popover) {
+    [UIAlertController ba_actionSheetShowInViewController:[self.class presentingViewController] title:@"更多" message:nil buttonTitleArray:buttonTitleArray buttonTitleColorArray:nil popoverPresentationControllerBlock:^(UIPopoverPresentationController * _Nonnull popover) {
         
     } block:^(UIAlertController * _Nonnull alertController, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
         
@@ -681,6 +680,14 @@ static PAWebView *baseWebview = nil;
     {
         NSLog(@"%@",keyPath);
     }
+}
+
++ (UIViewController *)presentingViewController {
+    UIViewController *presentedVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (presentedVC.presentedViewController) {
+        presentedVC = presentedVC.presentedViewController;
+    }
+    return presentedVC;
 }
 
 #pragma mark -

@@ -91,8 +91,8 @@ typedef void (^socialShareBlock)(void);
  */
 - (void)registerURLSchemes:(NSDictionary *)URLSchemes;
 
-- (UIAlertController *)callMenuPageByControl:(UIViewController *)control;
+- (UIAlertController *)callMenuPageByControl;
 
-
++ (UIViewController *)presentingViewController;
 @end
 
