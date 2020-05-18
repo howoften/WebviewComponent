@@ -533,6 +533,9 @@ static PAWebView *baseWebview = nil;
             {
                 [UIPasteboard generalPasteboard].string = self.webView.URL.absoluteString;
                 return;
+            }else if (self.currentURLString.length > 0) {
+                [UIPasteboard generalPasteboard].string = self.webView.URL.absoluteString;
+                return;
             }
             else
             {
@@ -565,6 +568,9 @@ static PAWebView *baseWebview = nil;
                 /*! safari打开 */
                 [NSURL SafariOpenURL:self.webView.URL];
                 return;
+            }else if (self.currentURLString.length > 0) {
+                [NSURL SafariOpenURL:[NSURL URLWithString:self.currentURLString]];
+                return;
             }
             else
             {
@@ -577,6 +583,9 @@ static PAWebView *baseWebview = nil;
             if (self.webView.URL.absoluteString.length > 0)
             {
                 [UIPasteboard generalPasteboard].string = self.webView.URL.absoluteString;
+                return;
+            }else if (self.currentURLString.length > 0) {
+                [UIPasteboard generalPasteboard].string = self.currentURLString;
                 return;
             }
             else
@@ -592,8 +601,15 @@ static PAWebView *baseWebview = nil;
         }
         else if (buttonIndex == 3)
         {
-            /*! 刷新 */
-            [_webView reloadFromOrigin];
+            if (self.webView.URL.absoluteString.length > 0)
+            {
+                [_webView reloadFromOrigin];
+                return;
+            }else if (self.currentURLString.length > 0) {
+                [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.currentURLString]]];
+                return;
+            }
+            
         }
         
     }];

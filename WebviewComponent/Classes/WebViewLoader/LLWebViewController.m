@@ -173,6 +173,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 #pragma mark - WKNavigationDelegate >>>>>>>>>>>>>>>>
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     [self refreshWebviewVendor:webView.URL];
+    self.webManager.currentURLString = webView.URL.absoluteString;
     if (self.navigationController.topViewController != self) {
         decisionHandler(WKNavigationActionPolicyCancel);
     }else{
