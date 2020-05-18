@@ -11,7 +11,7 @@
 @interface WKWebView (PAWebCache)
 
 /** 清除webView缓存 */
-- (void)deleteAllWebCache;
+- (void)deleteAllWebCacheWithCompletionHandler:(dispatch_block_t)compltionHandler;
 
 /** 清理缓存的方法，这个方法会清除缓存类型为HTML类型的文件*/
 - (void)clearHTMLCache;

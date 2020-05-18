@@ -20,14 +20,14 @@
 }
 
 #pragma mark - 清除webView缓存
-- (void)deleteAllWebCache {
+- (void)deleteAllWebCacheWithCompletionHandler:(dispatch_block_t)compltionHandler {
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0) {
         NSSet *websiteDataTypes = [NSSet setWithArray:
                                    @[WKWebsiteDataTypeDiskCache,
                                      WKWebsiteDataTypeOfflineWebApplicationCache,
                                      WKWebsiteDataTypeMemoryCache,
                                      WKWebsiteDataTypeLocalStorage,
-                                     //WKWebsiteDataTypeCookies,
+                                     WKWebsiteDataTypeCookies,
                                      WKWebsiteDataTypeSessionStorage,
                                      WKWebsiteDataTypeIndexedDBDatabases,
                                      WKWebsiteDataTypeWebSQLDatabases
@@ -39,17 +39,31 @@
         //// Execute
         [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
             [UIAlertController PAlertWithTitle:@"提示" message:@"缓存清理完成" completion:nil];
+            if (compltionHandler) {
+                compltionHandler();
+            }
         }];
     } else {
-        NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *cookiesFolderPath = [libraryPath stringByAppendingString:@"/Cookies"];
-        NSError *errors;
-        [[NSFileManager defaultManager] removeItemAtPath:cookiesFolderPath error:&errors];
-        if (!errors) {
+        NSString *libraryDir = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+        NSString *bundleId  =  [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+        NSString *webkitFolderInLib = [NSString stringWithFormat:@"%@/WebKit",libraryDir];
+        NSString *webKitFolderInCaches = [NSString stringWithFormat:@"%@/Caches/%@/WebKit",libraryDir,bundleId];
+        NSString *webKitFolderInCachesfs = [NSString stringWithFormat:@"%@/Caches/%@/fsCachedData",libraryDir,bundleId];
+        
+        NSError *error;
+        /* iOS8.0 WebView Cache path */
+        [[NSFileManager defaultManager] removeItemAtPath:webKitFolderInCaches error:&error];
+        [[NSFileManager defaultManager] removeItemAtPath:webkitFolderInLib error:nil];
+        
+        /* iOS7.0 WebView Cache path */
+        [[NSFileManager defaultManager] removeItemAtPath:webKitFolderInCachesfs error:&error];
+        if (!error) {
             [UIAlertController PAlertWithTitle:@"提示" message:@"缓存清理完成" completion:nil];
-        }else
-        {
+        }else {
             [UIAlertController PAlertWithTitle:@"提示" message:@"缓存清理失败" completion:nil];
+        }
+        if (compltionHandler) {
+            compltionHandler();
         }
     }
 }

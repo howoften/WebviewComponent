@@ -83,7 +83,7 @@ typedef void (^socialShareBlock)(void);
 - (void)deleteAllWKCookies;
 
 /** 清除所有缓存 */
-- (void)deleteAllWebCache;
+- (void)deleteAllWebCacheDidFinished:(dispatch_block_t)finished;
 
 /**
  存储URLSchemes主要用于识别urlschemes的来源名字和appstore的下载链接。系统默认输入一部分url，如需额外自定义添加或覆盖，请到registerURLSchemes查看样板

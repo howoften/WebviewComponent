@@ -330,8 +330,12 @@ static PAWebView *baseWebview = nil;
 }
 
 /** 删除所有缓存不包括cookies */
-- (void)deleteAllWebCache {
-    [self.webView deleteAllWebCache];
+- (void)deleteAllWebCacheDidFinished:(dispatch_block_t)finished {
+    [self.webView deleteAllWebCacheWithCompletionHandler:^{
+        if (finished) {
+            finished();
+        }
+    }];
     [_config.userContentController removeAllUserScripts];
 }
 
