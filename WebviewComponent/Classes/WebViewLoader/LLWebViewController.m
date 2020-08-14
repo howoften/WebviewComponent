@@ -210,6 +210,9 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     return nil;
     
 }
+- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView {
+    
+}
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
 //    NSLog(@"%@", NSStringFromSelector(_cmd));
@@ -221,11 +224,13 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
    
 }
 // 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
-
-//    NSLog(@"%@", NSStringFromSelector(_cmd));
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+    
 }
 
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+    
+}
 // 在收到响应后，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
     self.manualBackFlag = NO;
