@@ -172,6 +172,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 
 #pragma mark - WKNavigationDelegate >>>>>>>>>>>>>>>>
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSLog(@">>>>>>>>>>>>>>>%@", webView.URL);
     [self refreshWebviewVendor:webView.URL];
     self.webManager.currentURLString = webView.URL.absoluteString;
     if (self.navigationController.topViewController != self) {
@@ -218,10 +219,12 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
 //    NSLog(@"%@", NSStringFromSelector(_cmd));
-   
+   [self refreshWebviewVendor:webView.URL];
+
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
+    [self refreshWebviewVendor:webView.URL];
 
 //    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
