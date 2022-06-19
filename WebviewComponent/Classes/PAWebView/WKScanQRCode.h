@@ -12,7 +12,7 @@
 
 @interface WKScanQRCode : NSObject<UIGestureRecognizerDelegate>
 
-@property (nonatomic, strong) WKWebView *observerView;
+@property (nonatomic, weak) WKWebView *observerView;
 
 /** 单例 */
 + (instancetype)shareInstance;

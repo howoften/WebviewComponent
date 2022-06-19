@@ -16,7 +16,7 @@
 #define kNavBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height + 44)
 
 @interface LLWebViewController ()<WKNavigationDelegate, WKUIDelegate>
-@property (nonatomic, strong)WKWebView *webview;
+@property (nonatomic, weak)WKWebView *webview;
 @property (nonatomic, strong)NSURL *URL;
 @property (nonatomic, strong)NSURL *fileURL;
 
@@ -114,8 +114,9 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 
     [self.webview addObserver:self forKeyPath:@"URL" options:NSKeyValueObservingOptionNew context:nil];
     [self.webview addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    __weak typeof(self)weakSELF = self;
     [LLJSMessageNavigationBarHandler moreActionsForWebView:^{
-        [self.webManager callMenuPageByControl];
+        [weakSELF.webManager callMenuPageByControl];
     }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveQRCodeScanResult:) name:LLWebScanQRCodeResultNotificationName object:nil];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000 && TARGET_OS_IOS
@@ -279,6 +280,8 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
     self.manualBackFlag = YES;
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:LLWebViewDidCloseNotification object:self.webview];
+    self.webManager = nil;
+
 
 }
 
@@ -358,7 +361,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 - (void)dealloc {
     [self.webview removeObserver:self forKeyPath:@"URL"];
     [self.webview removeObserver:self forKeyPath:@"estimatedProgress"];
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:LLWebScanQRCodeResultNotificationName];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LLWebScanQRCodeResultNotificationName object:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
