@@ -7,6 +7,6 @@
 
 
 app_identifier("com.liujiang.webviewcomponent") # The bundle identifier of your app
-team_id("NYQEEV5UBU") # Developer Portal Team ID
+team_id("RJ9SHE83UJ") # Developer Portal Team ID
 apple_id("forliujiang@icloud.com") # Your Apple email address
 itc_team_id("xxxxx") # App Store Connect Team ID
