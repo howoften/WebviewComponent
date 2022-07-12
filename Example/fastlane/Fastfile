@@ -38,7 +38,7 @@ platform :ios do
         #export_method: app-store, package, ad-hoc, enterprise, development, 和developer-id
         scheme: "WebviewComponent-Example",
         workspace: "WebviewComponent.xcworkspace",
-        project: "WebviewComponent.xcodeproj",
+        # project: "WebviewComponent.xcodeproj",
         clean: true,
         configuration: "Release",
         export_method: "development",
