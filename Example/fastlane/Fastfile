@@ -1,0 +1,131 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+ 
+platform :ios do
+
+  #这里是指令描述
+  desc "build develop ipa"
+  lane :DEBUG do |options|
+ 
+    # add actions here: https://docs.fastlane.tools/actions
+    #automatic_code_signing和gym都是fastlane命令 可以查阅相关文档
+    #指定签名参数
+    automatic_code_signing(
+    #路径
+        path: "WebviewComponent.xcodeproj",
+    #证书
+        code_sign_identity: "Apple Development: forliujiang@@icloud.com (NYQEEV5UBU)",
+        #描述文件 Mac上描述文件路径 ~/Library/MobileDevice/Provisioning Profiles
+        profile_name: "5bf8e155-9151-4a2f-ae31-49a9a051d9ca.mobileprovision"
+    )
+ 
+    #指定构建参数
+    gym(
+        #export_method: app-store, package, ad-hoc, enterprise, development, 和developer-id
+        scheme: "WebviewComponent-Example",
+        workspace: "WebviewComponent.xcworkspace",
+        project: "WebviewComponent.xcodeproj",
+        clean: true,
+        configuration: "Release",
+        export_method: "development",
+        output_name: options[:ipa_name],
+        output_directory: "#{options[:output_path]}",
+        export_xcargs: "-allowProvisioningUpdates",
+        archive_path: "#{options[:output_path]}/#{options[:ipa_name]}"
+    )
+    puts "*************| 开始上传蒲公英... |*************"
+        # 开始上传蒲公英
+        pgyer(api_key: "5962cf1e989d2a6d7100983a551040a6", user_key:"7d286b445a681332f8e75cf13e996234")
+    puts "*************| 上传蒲公英成功🎉 |*************"
+  end
+ 
+ lane :PRE_RELEASE do |options|
+ 
+    
+    # add actions here: https://docs.fastlane.tools/actions
+    #automatic_code_signing和gym都是fastlane命令 可以查阅相关文档
+    #指定签名参数
+    automatic_code_signing(
+    #路径
+        path: "WebviewComponent.xcodeproj",
+    #证书
+        code_sign_identity: "Apple Development: forliujiang@@icloud.com (NYQEEV5UBU)",
+        #描述文件 Mac上描述文件路径 ~/Library/MobileDevice/Provisioning Profiles
+        profile_name: "5bf8e155-9151-4a2f-ae31-49a9a051d9ca.mobileprovision"
+    )
+ 
+    #指定构建参数
+    gym(
+        #export_method: app-store, package, ad-hoc, enterprise, development, 和developer-id
+        scheme: "WebviewComponent-Example",
+        workspace: "WebviewComponent.xcworkspace",
+        project: "WebviewComponent.xcodeproj",
+        clean: true,
+        configuration: "Release",
+        export_method: "ad-hoc",
+        output_name: options[:ipa_name],
+        output_directory: "#{options[:output_path]}",
+        export_xcargs: "-allowProvisioningUpdates",
+        archive_path: "#{options[:output_path]}/#{options[:ipa_name]}"
+    )
+    puts "*************| 开始上传蒲公英... |*************"
+        # 开始上传蒲公英
+        pgyer(api_key: "5962cf1e989d2a6d7100983a551040a6", user_key:"7d286b445a681332f8e75cf13e996234")
+    puts "*************| 上传蒲公英成功🎉 |*************"
+  end
+ 
+lane :RELEASE do |options|
+ 
+    # add actions here: https://docs.fastlane.tools/actions
+    
+    puts "以app-store 方式打包"
+    
+    #指定构建参数
+ 
+    #自动增加build版本号
+    increment_build_number
+ 
+    gym(
+        scheme: "要打包的target项目名称",
+        workspace: "项目名称.xcworkspace",
+        clean: true,
+        configuration: "Release",
+        output_name: options[:ipa_name],
+        output_directory: "#{options[:output_path]}",
+        export_xcargs: "-allowProvisioningUpdates",
+        export_options: {
+                method: "app-store",
+                provisioningProfiles: { 
+                        # bundleid，打包用的证书名字,这里也可以采用参数传递,看个人喜好吧
+                        "com.you.bundleIdentifier": "your_appStore" 
+                }
+                
+        }
+    )
+    deliver(
+                # 选择跳过图片和元数据上传，自己去配置
+                skip_screenshots:true,
+                skip_metadata:true,
+                # 上传所有信息到App Store
+                force:true,
+                )
+    puts "*************| 上传AppStore成功🎉 |*************"
+ 
+  end
+ 
+ 
+end
