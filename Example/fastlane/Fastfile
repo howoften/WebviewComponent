@@ -28,7 +28,7 @@ platform :ios do
     #路径
         path: "WebviewComponent.xcodeproj",
     #证书
-        code_sign_identity: "Apple Development: forliujiang@@icloud.com (NYQEEV5UBU)",
+        code_sign_identity: "Apple Development: forliujiang@icloud.com (NYQEEV5UBU)",
         #描述文件 Mac上描述文件路径 ~/Library/MobileDevice/Provisioning Profiles
         profile_name: "8a945911-1ca8-4b96-ac94-1cf4d54a1067.mobileprovision"
     )
@@ -63,7 +63,7 @@ platform :ios do
     #路径
         path: "WebviewComponent.xcodeproj",
     #证书
-        code_sign_identity: "Apple Development: forliujiang@@icloud.com (NYQEEV5UBU)",
+        code_sign_identity: "Apple Development: forliujiang@icloud.com (NYQEEV5UBU)",
         #描述文件 Mac上描述文件路径 ~/Library/MobileDevice/Provisioning Profiles
         profile_name: "5bf8e155-9151-4a2f-ae31-49a9a051d9ca.mobileprovision"
     )
