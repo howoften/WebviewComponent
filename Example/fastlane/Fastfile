@@ -29,6 +29,9 @@ platform :ios do
         path: "WebviewComponent.xcodeproj",
     #证书
         code_sign_identity: "Apple Development: forliujiang@icloud.com (NYQEEV5UBU)",
+        team_id: "RJ9SHE83UJ",
+        use_automatic_signing: false,
+    	targets: ["WebviewComponent_Example"],
         #描述文件 Mac上描述文件路径 ~/Library/MobileDevice/Provisioning Profiles
         profile_name: "8a945911-1ca8-4b96-ac94-1cf4d54a1067.mobileprovision"
     )
