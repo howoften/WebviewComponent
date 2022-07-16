@@ -33,7 +33,7 @@ platform :ios do
         use_automatic_signing: false,
     	targets: ["WebviewComponent_Example"],
         #描述文件 Mac上描述文件路径 ~/Library/MobileDevice/Provisioning Profiles
-        profile_name: "/Users/liujiang/Desktop/cert/DPMS_dev-2.mobileprovision"
+        profile_name: "DPMS_dev"
     )
  
     #指定构建参数
@@ -71,7 +71,7 @@ platform :ios do
         use_automatic_signing: false,
     	targets: ["WebviewComponent_Example"],
         #描述文件 Mac上描述文件路径 ~/Library/MobileDevice/Provisioning Profiles
-        profile_name: "/Users/liujiang/Desktop/cert/DPMS_dis_two.mobileprovision"
+        profile_name: "DPMS_dis_two"
     )
  
     #指定构建参数
