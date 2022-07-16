@@ -28,12 +28,12 @@ platform :ios do
     #路径
         path: "WebviewComponent.xcodeproj",
     #证书
-        code_sign_identity: "Apple Development: forliujiang@icloud.com (NYQEEV5UBU)",
-        team_id: "RJ9SHE83UJ",
+        code_sign_identity: "Apple Development: HaiLong Li (B3Q8Z735J3)",
+        team_id: "4DRLM9LM74",
         use_automatic_signing: false,
     	targets: ["WebviewComponent_Example"],
         #描述文件 Mac上描述文件路径 ~/Library/MobileDevice/Provisioning Profiles
-        profile_name: "8a945911-1ca8-4b96-ac94-1cf4d54a1067.mobileprovision"
+        profile_name: "/Users/liujiang/Desktop/cert/DPMS_dev-2.mobileprovision"
     )
  
     #指定构建参数
@@ -66,9 +66,12 @@ platform :ios do
     #路径
         path: "WebviewComponent.xcodeproj",
     #证书
-        code_sign_identity: "Apple Development: forliujiang@icloud.com (NYQEEV5UBU)",
+        code_sign_identity: "iPhone Distribution: GreenTree Inn management Co,Ltd.",
+        team_id: "4DRLM9LM74",
+        use_automatic_signing: false,
+    	targets: ["WebviewComponent_Example"],
         #描述文件 Mac上描述文件路径 ~/Library/MobileDevice/Provisioning Profiles
-        profile_name: "5bf8e155-9151-4a2f-ae31-49a9a051d9ca.mobileprovision"
+        profile_name: "/Users/liujiang/Desktop/cert/DPMS_dis_two.mobileprovision"
     )
  
     #指定构建参数
