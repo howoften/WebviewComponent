@@ -13,7 +13,6 @@
 		03BD7067D771E0584EB3F9E2A58F4F77 /* UIColor+Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 96B973C1E131F8A0618D59BD60786BA4 /* UIColor+Hex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03BF987FB5668AD7173B0DD5A19601D9 /* LLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C26F416E85AE1324B359F08E0C090 /* LLWebViewController.m */; };
 		06A927D3E82BE387453F4C175248CED8 /* UIView+JCAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7102B257584C2675438AD5A9D4EF7 /* UIView+JCAddition.m */; };
-		07F3D46B0978390656505AD4B680C84C /* LLWebNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0D193B81872E3A6A7FA018154886F2 /* LLWebNavigationBar.m */; };
 		09E44EE9A921809CB383DCAFC3A81289 /* PAWebView+UIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 622EE04B8DA265DC99273B998515616B /* PAWebView+UIDelegate.m */; };
 		0ACE131EB8B1B2888A4104E1C820ED8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C78F2FE1AC0D63B6D6C0971AAE67D36F /* Foundation.framework */; };
 		0BC6642E1A940B6B580B39DBF6F3FF07 /* TOActivityCroppedImageProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8632D3DA6D25C449FBEA134285AC16DF /* TOActivityCroppedImageProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,6 +40,12 @@
 		2B5B6585A3DD40173C21C5043522C1F4 /* LLJSMessageNavigationBarHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBB596887A5159F717F8F587F58C643 /* LLJSMessageNavigationBarHandler.m */; };
 		2B6C801474983F7D5D71930D7CEFCA23 /* JSMessageMediaHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780A1DC981FFC703D98A7AF2D2547DA /* JSMessageMediaHandler.m */; };
 		2BBD2377993FD64619073E1DE61CED81 /* NSObject+PARuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 997B81527DEE1D670F48565F0605EC6A /* NSObject+PARuntime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2DFBCC3129504DC4009296BA /* LLNavigationBackButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFBCC2B29504DC4009296BA /* LLNavigationBackButton.h */; };
+		2DFBCC3229504DC4009296BA /* LLModalTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFBCC2C29504DC4009296BA /* LLModalTransition.h */; };
+		2DFBCC3329504DC4009296BA /* LLWebNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFBCC2D29504DC4009296BA /* LLWebNavigationBar.h */; };
+		2DFBCC3429504DC4009296BA /* LLNavigationBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBCC2E29504DC4009296BA /* LLNavigationBackButton.m */; };
+		2DFBCC3529504DC4009296BA /* LLModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBCC2F29504DC4009296BA /* LLModalTransition.m */; };
+		2DFBCC3629504DC4009296BA /* LLWebNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFBCC3029504DC4009296BA /* LLWebNavigationBar.m */; };
 		2E60BA9C4F6C1E9DB15A07C1718A1E50 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A8FB84C9D65A37D45BDF55761A1D75 /* WebKit.framework */; };
 		2ED517DA89EE747499B412AC6297A4FC /* LLWebJSBridgeManage.h in Headers */ = {isa = PBXBuildFile; fileRef = D9E119F3248D182F32A383F667354324 /* LLWebJSBridgeManage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F45711B25A14505C5B3EB91A7FDBC2D /* JCVideoRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A11A8EE4D5A8D7FEF754DAD9E8BE1D0 /* JCVideoRecordView.m */; };
@@ -60,7 +65,6 @@
 		480DB189F4F2CCB45D2E861B6C5B7017 /* WebviewComponent.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A25227AC4407FB2BC07EAF0AD6FB28CD /* WebviewComponent.bundle */; };
 		48280D1F369E0E2D4773DF806C755A0F /* WebViewJavascriptBridge-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A8D6AC9ABF3C951E1F06BD9436189 /* WebViewJavascriptBridge-dummy.m */; };
 		48B9C6F6F19E53FF05EB970AC72C96D1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C78F2FE1AC0D63B6D6C0971AAE67D36F /* Foundation.framework */; };
-		49408329CC1742A8EFD683593582F846 /* LLWebNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 490EEB578E82842BDAC098D31B63C068 /* LLWebNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49E9ABD5F6D93F85BE6C0F8BABB8B67A /* JSMessageScanQRCodeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A60E6B34A862A6AB5854802E4CA48111 /* JSMessageScanQRCodeHandler.m */; };
 		4AACDC993E5C32A3E6A4819F55F72F50 /* rscode.m in Sources */ = {isa = PBXBuildFile; fileRef = 714279A83B5740AD4BF1503D58066BD4 /* rscode.m */; };
 		4C8416D9F7FDEC1F371E3C82FFB08757 /* SJAlertViewPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F260532B6050894AF471E362E287644 /* SJAlertViewPresenter.m */; };
@@ -146,7 +150,6 @@
 		BC94D2819C63D5594B20FC4483F9C986 /* DeviceVirtualUUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C707822173BC75C74FCC33A1FCA8561 /* DeviceVirtualUUID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE3E14588571CA890CE7F11C2EBD502B /* WebViewJavascriptBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9D8F1CDC3569C097755A5D201FA067 /* WebViewJavascriptBridge.framework */; };
 		C06B824FAD1CA44CD789ADD4ED76EDA2 /* BaseAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E29393C0FEAD8E334099BD0205553A57 /* BaseAlertView.m */; };
-		C180F5C340CCF6897E3E8B4121FE1566 /* LLModalTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B7D808884E5CF0654FC50D7ABAC5457 /* LLModalTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C204E157E96BDCE5F6684109504C33FA /* SystemMapManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 74000B8E4284AFABA92FC21E9311CFCA /* SystemMapManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3217E8E40EC1CA2ADC53A78CD2EABBE /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E20C24907D15513EE094197C0A9D25 /* UIColor+Hex.m */; };
 		C641CFA8512AFBD6F5610B5C90CA5040 /* LLWebKeyChainSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7EF6F0F01B0051E81C33699C14E1C /* LLWebKeyChainSaver.m */; };
@@ -165,7 +168,6 @@
 		D6401408A9A0AEF7185B8C2B13136601 /* qrinput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2191443C99078DF1B03DA1FAE689E7F6 /* qrinput.m */; };
 		D7624679BBACDF15DF6D24F91B6BAAF4 /* UIImage+MDQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = E118EC9673ADDC4A402DB4ECF17FA9E7 /* UIImage+MDQRCode.m */; };
 		D7D0FF9925BF40990DB00DCAE315CF8A /* JCRecordPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 256D899A68D59ACC2AC43C82A872127B /* JCRecordPlayerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D7D3082CE10272777A91091D42164D31 /* LLModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6679A81DD8E879795F63FC7F6B3BA6 /* LLModalTransition.m */; };
 		DA2C0C35B8746163A959813AF58ADB7E /* JSMessageLocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F26DE83A844EF22A800C08A5B9458395 /* JSMessageLocationHandler.m */; };
 		DABF20F73D27572CD97071A6D4DB9004 /* MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B22422917F171AF74B68B9DD1000FF5B /* MBProgressHUD-dummy.m */; };
 		DD60FFDCAC4CE2390517E0D8DEF3DB80 /* LLOAuthManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BFC6DAA3F4E9FE7426825EF7EEA5486 /* LLOAuthManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -250,7 +252,6 @@
 		093CABD0287F573D28CBB7333B36FC38 /* qrencode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = qrencode.m; sourceTree = "<group>"; };
 		0A95384C0CBC77E8F1575BBC242833B5 /* LLWebViewSimplifyLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLWebViewSimplifyLoader.h; path = WebviewComponent/Classes/WebViewLoader/LLWebViewSimplifyLoader.h; sourceTree = "<group>"; };
 		0B71B8A3BAEE7C1C44EC3036818767DF /* LLJSMessageNavigationBarTitleHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLJSMessageNavigationBarTitleHandler.m; path = WebviewComponent/Classes/JSBridgeMessageHandle/LLJSMessageNavigationBarTitleHandler.m; sourceTree = "<group>"; };
-		0C6679A81DD8E879795F63FC7F6B3BA6 /* LLModalTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLModalTransition.m; path = WebviewComponent/Classes/WebViewLoader/LLModalTransition.m; sourceTree = "<group>"; };
 		0CC1B43C1AF3576F32D054D30801760F /* JCVideoRecordProgressView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCVideoRecordProgressView.h; sourceTree = "<group>"; };
 		0E2D79BE761A595EBF8B9967C2104100 /* Pods-WebviewComponent_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WebviewComponent_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		0EA1B077628F13A5F30CE10317617594 /* QRCScanner.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = QRCScanner.m; sourceTree = "<group>"; };
@@ -269,7 +270,7 @@
 		1A0A8D6AC9ABF3C951E1F06BD9436189 /* WebViewJavascriptBridge-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WebViewJavascriptBridge-dummy.m"; sourceTree = "<group>"; };
 		1A11A8EE4D5A8D7FEF754DAD9E8BE1D0 /* JCVideoRecordView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = JCVideoRecordView.m; sourceTree = "<group>"; };
 		1A1B8BEA46F6001877C0453AED00728E /* UIViewController+Refresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Refresh.m"; sourceTree = "<group>"; };
-		1A368E2264867D2D13E0C4E1B4FBA07E /* Pods_WebviewComponent_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WebviewComponent_Example.framework; path = "Pods-WebviewComponent_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A368E2264867D2D13E0C4E1B4FBA07E /* Pods_WebviewComponent_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebviewComponent_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C89C1E2CBFDBB18708E03F24A118F5B /* Pods-WebviewComponent_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WebviewComponent_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		1D7C8FBCDE2DB48FE7691BEC8FB18B69 /* LLJSMessageNavigationBarTitleHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLJSMessageNavigationBarTitleHandler.h; path = WebviewComponent/Classes/JSBridgeMessageHandle/LLJSMessageNavigationBarTitleHandler.h; sourceTree = "<group>"; };
 		207D295961D56D49B5955FDA647DD5D6 /* qrinput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
@@ -286,8 +287,14 @@
 		2B42543FEA15F06171BE4CB051B8FA84 /* UIImage+MDQRCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+MDQRCode.h"; sourceTree = "<group>"; };
 		2C0AFB9DF754F01A0DBDA55942CD4A44 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WebViewJavascriptBridge.h; path = WebViewJavascriptBridge/WebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		2C4C2CC370349CBEE7BD3F340BAB743B /* JSMessageOtherHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSMessageOtherHandler.m; path = WebviewComponent/Classes/Addition/JSMessageOtherHandler.m; sourceTree = "<group>"; };
+		2DFBCC2B29504DC4009296BA /* LLNavigationBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNavigationBackButton.h; sourceTree = "<group>"; };
+		2DFBCC2C29504DC4009296BA /* LLModalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLModalTransition.h; sourceTree = "<group>"; };
+		2DFBCC2D29504DC4009296BA /* LLWebNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWebNavigationBar.h; sourceTree = "<group>"; };
+		2DFBCC2E29504DC4009296BA /* LLNavigationBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNavigationBackButton.m; sourceTree = "<group>"; };
+		2DFBCC2F29504DC4009296BA /* LLModalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLModalTransition.m; sourceTree = "<group>"; };
+		2DFBCC3029504DC4009296BA /* LLWebNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWebNavigationBar.m; sourceTree = "<group>"; };
 		2EE6FE0A7879C93CD268171965E35D16 /* Base64Tool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Base64Tool.m; sourceTree = "<group>"; };
-		2F3DA0CCEDAB1B41001E1969C5553C3F /* WebviewComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WebviewComponent.framework; path = WebviewComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F3DA0CCEDAB1B41001E1969C5553C3F /* WebviewComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebviewComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B8ECB4B85E476DB2B104AD1D60543B /* SystemMapManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SystemMapManager.m; sourceTree = "<group>"; };
 		32ED3B1CB650DA28B50E5E783F7CCAAB /* TOCropViewController-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TOCropViewController-Bridging-Header.h"; sourceTree = "<group>"; };
 		34D26778AB5220F9F606E2161420EB10 /* TOCropView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TOCropView.m; sourceTree = "<group>"; };
@@ -298,7 +305,6 @@
 		3F1118D6AE897C8E2F73477AD423D7CF /* TOActivityCroppedImageProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TOActivityCroppedImageProvider.m; sourceTree = "<group>"; };
 		47071F651386FA94B40709CC30D33ACD /* LLWebViewSimplifyLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLWebViewSimplifyLoader.m; path = WebviewComponent/Classes/WebViewLoader/LLWebViewSimplifyLoader.m; sourceTree = "<group>"; };
 		474A1B100B380026E4D32F16F2883AE1 /* Pods-WebviewComponent_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WebviewComponent_Example-dummy.m"; sourceTree = "<group>"; };
-		490EEB578E82842BDAC098D31B63C068 /* LLWebNavigationBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLWebNavigationBar.h; path = WebviewComponent/Classes/Tools/LLWebNavigationBar.h; sourceTree = "<group>"; };
 		49E51A87FACF27491F933D54F01E6D75 /* mask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
 		4B59B504D5697BF1C237A822D1586BB1 /* PAWKPanGestureRecognizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PAWKPanGestureRecognizer.h; sourceTree = "<group>"; };
 		4BFC6DAA3F4E9FE7426825EF7EEA5486 /* LLOAuthManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLOAuthManager.h; path = WebviewComponent/Classes/OAuth/LLOAuthManager.h; sourceTree = "<group>"; };
@@ -311,7 +317,6 @@
 		5676EF2C8B6904E1399E83A974C37E0F /* UIAlertController+WKWebAlert.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+WKWebAlert.h"; sourceTree = "<group>"; };
 		5A639E0FCF3C7610B40BB0F3391F02F6 /* TOCroppedImageAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TOCroppedImageAttributes.h; sourceTree = "<group>"; };
 		5B6B802D4BF6A3BBE62A505488F5C703 /* UIImage+Compress.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compress.m"; sourceTree = "<group>"; };
-		5B7D808884E5CF0654FC50D7ABAC5457 /* LLModalTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLModalTransition.h; path = WebviewComponent/Classes/WebViewLoader/LLModalTransition.h; sourceTree = "<group>"; };
 		5D823FD5FBCEA92F20F6A043A5B1C262 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D8CC92E6907C3D27E5512E501E956DF /* TOCropOverlayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TOCropOverlayView.h; sourceTree = "<group>"; };
 		5DC06D8E9FAE8B4370F17AC69988B145 /* LLOAuthTranslater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLOAuthTranslater.m; path = WebviewComponent/Classes/OAuth/LLOAuthTranslater.m; sourceTree = "<group>"; };
@@ -347,9 +352,9 @@
 		8878F8252F4AD848BBDDF0E1F826E8C5 /* Pods-WebviewComponent_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WebviewComponent_Example-Info.plist"; sourceTree = "<group>"; };
 		8A46ABF3036D1846B55D52777C464FFD /* Pods-WebviewComponent_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WebviewComponent_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8B22F3C5D2E1C1F8338E6E84CCBDC022 /* WebviewComponent-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "WebviewComponent-Info.plist"; sourceTree = "<group>"; };
-		8B8FAB0D627B17EDE1366984278705D9 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MBProgressHUD.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B8FAB0D627B17EDE1366984278705D9 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9D8F1CDC3569C097755A5D201FA067 /* WebViewJavascriptBridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebViewJavascriptBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EB68B7943515E4F13CC6BE690FFD564 /* WebViewJavascriptBridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WebViewJavascriptBridge.framework; path = WebViewJavascriptBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EB68B7943515E4F13CC6BE690FFD564 /* WebViewJavascriptBridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebViewJavascriptBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95848D7D51031F02E4A2136F6E9DDBF2 /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = WebViewJavascriptBridgeBase.m; path = WebViewJavascriptBridge/WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
 		9658C29960B7EFB63EB5CFABB34FAAAF /* WKBaseWebView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WKBaseWebView.m; sourceTree = "<group>"; };
 		96B973C1E131F8A0618D59BD60786BA4 /* UIColor+Hex.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -361,8 +366,8 @@
 		9A7814D87CD91552A5B3C16942B4D78B /* split.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		9B2682EEBF0031A9DB8ABE31BB1EF40D /* LLWebKeyChainSaver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LLWebKeyChainSaver.h; sourceTree = "<group>"; };
 		9CADB1B92974B93250E5EB79A286FC86 /* Pods-WebviewComponent_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-WebviewComponent_Tests.modulemap"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DAC693FF4B62B59D5D75684096FC9D2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DAC693FF4B62B59D5D75684096FC9D2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9DCA203C9295EB4B3166787380BFBB62 /* Pods-WebviewComponent_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WebviewComponent_Example-frameworks.sh"; sourceTree = "<group>"; };
 		9E12CB8E90C48BDDFD03AF2E1888D24B /* UINavigationItem+AttributeTitle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationItem+AttributeTitle.h"; path = "WebviewComponent/Classes/JSBridgeMessageHandle/UINavigationItem+AttributeTitle.h"; sourceTree = "<group>"; };
 		9E26116B0F0FF6A8335A4E3050E8A0EE /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WebViewJavascriptBridgeBase.h; path = WebViewJavascriptBridge/WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
@@ -375,7 +380,7 @@
 		A25227AC4407FB2BC07EAF0AD6FB28CD /* WebviewComponent.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = WebviewComponent.bundle; path = WebviewComponent/Assets/WebviewComponent.bundle; sourceTree = "<group>"; };
 		A361B90C1BA2BDC09035B3CAFE7816FC /* LLOAuthManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLOAuthManager.m; path = WebviewComponent/Classes/OAuth/LLOAuthManager.m; sourceTree = "<group>"; };
 		A4FAE6B9EC3304CE0A6723D4C44BB464 /* SJAlertViewPresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SJAlertViewPresenter.h; sourceTree = "<group>"; };
-		A5E5303FA6DE9B68F6F4C4BA6EC9E77E /* WebviewComponent.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = WebviewComponent.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A5E5303FA6DE9B68F6F4C4BA6EC9E77E /* WebviewComponent.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = WebviewComponent.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A60E6B34A862A6AB5854802E4CA48111 /* JSMessageScanQRCodeHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSMessageScanQRCodeHandler.m; path = WebviewComponent/Classes/Addition/JSMessageScanQRCodeHandler.m; sourceTree = "<group>"; };
 		A62E409A6419DB7F553BECDFEDC37EA5 /* WebviewComponent-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WebviewComponent-dummy.m"; sourceTree = "<group>"; };
 		AB6A98A9A9697EE01B24D08349E78339 /* JSMessageScanQRCodeHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSMessageScanQRCodeHandler.h; path = WebviewComponent/Classes/Addition/JSMessageScanQRCodeHandler.h; sourceTree = "<group>"; };
@@ -415,7 +420,7 @@
 		CBBADAA6EBF1AF55D1FB19ED015905F5 /* bitstream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = bitstream.m; sourceTree = "<group>"; };
 		CF9FA7B9684732A16E57CDEF9A1C1B16 /* PAWebNavigationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PAWebNavigationController.h; sourceTree = "<group>"; };
 		D19F3025E856550B5E7759A0A79377DE /* UILabel+ImagePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UILabel+ImagePicker.h"; sourceTree = "<group>"; };
-		D5C08297CABFBF7F5F563053AA84E2DE /* Pods_WebviewComponent_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WebviewComponent_Tests.framework; path = "Pods-WebviewComponent_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5C08297CABFBF7F5F563053AA84E2DE /* Pods_WebviewComponent_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebviewComponent_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A7EF6F0F01B0051E81C33699C14E1C /* LLWebKeyChainSaver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LLWebKeyChainSaver.m; sourceTree = "<group>"; };
 		D741AE7398F936C23E23C725C84EB621 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		D834CF197E702E3BA9E993BA1D139A4D /* JCVideoRecordView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCVideoRecordView.h; sourceTree = "<group>"; };
@@ -433,14 +438,13 @@
 		E4B68512C2B5F1574792F64093CB7104 /* MBProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MBProgressHUD.modulemap; sourceTree = "<group>"; };
 		E5CDA802985AECDA898B54E56619B7F1 /* SheetAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SheetAlertView.m; sourceTree = "<group>"; };
 		E67932121689758CC62F942918AF0B68 /* UIViewController+Refresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Refresh.h"; sourceTree = "<group>"; };
-		E93E2F5348A698568622A24ADECAB85C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		E93E2F5348A698568622A24ADECAB85C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		EA20F66702B4710FBC969ACD7D5918FC /* SJNormalAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SJNormalAlertView.m; sourceTree = "<group>"; };
 		EBBB596887A5159F717F8F587F58C643 /* LLJSMessageNavigationBarHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLJSMessageNavigationBarHandler.m; path = WebviewComponent/Classes/JSBridgeMessageHandle/LLJSMessageNavigationBarHandler.m; sourceTree = "<group>"; };
 		ED1D23656E0A27E3F47DFFBDD3DCA6E4 /* UIImage+CropRotate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CropRotate.m"; sourceTree = "<group>"; };
 		ED4A92ABDD9B96AC87C82C7FC1CCDD75 /* TOCropOverlayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TOCropOverlayView.m; sourceTree = "<group>"; };
 		ED562E2C91E5EDF550E8562EBA8A157D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		EDFAFA3F3051ACF987FCF8E2E972703F /* mask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = mask.m; sourceTree = "<group>"; };
-		EE0D193B81872E3A6A7FA018154886F2 /* LLWebNavigationBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLWebNavigationBar.m; path = WebviewComponent/Classes/Tools/LLWebNavigationBar.m; sourceTree = "<group>"; };
 		F098D9DDBCAE47AE755EB9245C6BF223 /* LLWebJSBridgeManage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLWebJSBridgeManage.m; path = WebviewComponent/Classes/WebJSBridgeManage/LLWebJSBridgeManage.m; sourceTree = "<group>"; };
 		F26DE83A844EF22A800C08A5B9458395 /* JSMessageLocationHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSMessageLocationHandler.m; path = WebviewComponent/Classes/Addition/JSMessageLocationHandler.m; sourceTree = "<group>"; };
 		F37C44C92F211A845C3F60E881EEAEFC /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -516,7 +520,6 @@
 				E118EC9673ADDC4A402DB4ECF17FA9E7 /* UIImage+MDQRCode.m */,
 				1654D8E2D8B1C45D69CB42FC9165B957 /* libqrencode */,
 			);
-			name = resource;
 			path = resource;
 			sourceTree = "<group>";
 		};
@@ -532,10 +535,9 @@
 		1100209DAD2775AB47E8EE7A7940BF7B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				490EEB578E82842BDAC098D31B63C068 /* LLWebNavigationBar.h */,
-				EE0D193B81872E3A6A7FA018154886F2 /* LLWebNavigationBar.m */,
 				102568AF50BC698F32221A2A0FA1EE2C /* LLWebViewHelper.h */,
 				CA2AB2A466483478792D79D0DFA1C0C7 /* LLWebViewHelper.m */,
+				2DFBCC2A29504DC4009296BA /* LLNavigationBar */,
 				B9F123ADC038D7BE97D632CADDA8429E /* Base64 */,
 				C232FAAAB23BC473E7B7D265A7334B01 /* ImageCompress */,
 				E95E573BBE53841762E5B8561C0BA61B /* LLImagePicker */,
@@ -567,7 +569,6 @@
 				9A7814D87CD91552A5B3C16942B4D78B /* split.h */,
 				F5DD18436783EB0986D4C100978F85B7 /* split.m */,
 			);
-			name = libqrencode;
 			path = libqrencode;
 			sourceTree = "<group>";
 		};
@@ -578,7 +579,6 @@
 				F37C44C92F211A845C3F60E881EEAEFC /* MBProgressHUD.m */,
 				5CD5BB2971261FF7AD5DE7AC3EAD027D /* Support Files */,
 			);
-			name = MBProgressHUD;
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -588,7 +588,6 @@
 				5676EF2C8B6904E1399E83A974C37E0F /* UIAlertController+WKWebAlert.h */,
 				F7F6BE61868141E2144E101F9AC10149 /* UIAlertController+WKWebAlert.m */,
 			);
-			name = views;
 			path = views;
 			sourceTree = "<group>";
 		};
@@ -604,7 +603,6 @@
 				6ED5CE064DE22C1039F8C85B017AC165 /* TOCropView.h */,
 				34D26778AB5220F9F606E2161420EB10 /* TOCropView.m */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -621,7 +619,6 @@
 				55AB77982FCC0A8B1E61A5470E8017CE /* WKWebViewJavascriptBridge.m */,
 				7D08850597697AC856A74685A2946A0B /* Support Files */,
 			);
-			name = WebViewJavascriptBridge;
 			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
 		};
@@ -645,7 +642,6 @@
 				2EC7E3FCB1DF7882335B530FDF8DA2F5 /* Models */,
 				1A2ED7DBD5FAB3CF561EB47B42BF46EB /* Views */,
 			);
-			name = TOCropViewController;
 			path = TOCropViewController;
 			sourceTree = "<group>";
 		};
@@ -662,6 +658,20 @@
 			name = JSBridgeMessageHandle;
 			sourceTree = "<group>";
 		};
+		2DFBCC2A29504DC4009296BA /* LLNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				2DFBCC2B29504DC4009296BA /* LLNavigationBackButton.h */,
+				2DFBCC2E29504DC4009296BA /* LLNavigationBackButton.m */,
+				2DFBCC2C29504DC4009296BA /* LLModalTransition.h */,
+				2DFBCC2F29504DC4009296BA /* LLModalTransition.m */,
+				2DFBCC2D29504DC4009296BA /* LLWebNavigationBar.h */,
+				2DFBCC3029504DC4009296BA /* LLWebNavigationBar.m */,
+			);
+			name = LLNavigationBar;
+			path = WebviewComponent/Classes/Tools/LLNavigationBar;
+			sourceTree = "<group>";
+		};
 		2EC7E3FCB1DF7882335B530FDF8DA2F5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,7 +684,6 @@
 				C951539C2EA494D4956F527E62BB701C /* UIImage+CropRotate.h */,
 				ED1D23656E0A27E3F47DFFBDD3DCA6E4 /* UIImage+CropRotate.m */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -828,8 +837,6 @@
 		A8E2E6C453661AC13D4A3282372554BE /* WebViewLoader */ = {
 			isa = PBXGroup;
 			children = (
-				5B7D808884E5CF0654FC50D7ABAC5457 /* LLModalTransition.h */,
-				0C6679A81DD8E879795F63FC7F6B3BA6 /* LLModalTransition.m */,
 				9FC2AC88CEF1CFFC86414C388D75ECA9 /* LLWebNavigationController.h */,
 				51734616F34CECB6296DB30A03973E00 /* LLWebNavigationController.m */,
 				B88038D0F824E9F95535DF62744569A8 /* LLWebViewController.h */,
@@ -848,7 +855,6 @@
 				20E5CA3EB12185D8E47296A0947B6FF5 /* SheetAlertView.h */,
 				E5CDA802985AECDA898B54E56619B7F1 /* SheetAlertView.m */,
 			);
-			name = SheetAlertView;
 			path = SheetAlertView;
 			sourceTree = "<group>";
 		};
@@ -899,7 +905,6 @@
 				EA20F66702B4710FBC969ACD7D5918FC /* SJNormalAlertView.m */,
 				130B0F9AC1C103A40441A0D296B05B3F /* SJNormalAlertView.xib */,
 			);
-			name = SJNormalAlertView;
 			path = SJNormalAlertView;
 			sourceTree = "<group>";
 		};
@@ -1007,7 +1012,6 @@
 				D834CF197E702E3BA9E993BA1D139A4D /* JCVideoRecordView.h */,
 				1A11A8EE4D5A8D7FEF754DAD9E8BE1D0 /* JCVideoRecordView.m */,
 			);
-			name = VideoRecord;
 			path = VideoRecord;
 			sourceTree = "<group>";
 		};
@@ -1067,7 +1071,6 @@
 				DDF9BA8B009D71DAE130E3905ABE8E11 /* BaseAlertView.h */,
 				E29393C0FEAD8E334099BD0205553A57 /* BaseAlertView.m */,
 			);
-			name = BaseAlertView;
 			path = BaseAlertView;
 			sourceTree = "<group>";
 		};
@@ -1098,7 +1101,6 @@
 				74319787D9A1DBCD22478CC2827347ED /* UIView+JCAddition.h */,
 				B4B7102B257584C2675438AD5A9D4EF7 /* UIView+JCAddition.m */,
 			);
-			name = Additions;
 			path = Additions;
 			sourceTree = "<group>";
 		};
@@ -1132,7 +1134,6 @@
 				D19F3025E856550B5E7759A0A79377DE /* UILabel+ImagePicker.h */,
 				D9AB160A3B4A2D8BDA7187C599E41F06 /* UILabel+ImagePicker.m */,
 			);
-			name = ImagePicker;
 			path = ImagePicker;
 			sourceTree = "<group>";
 		};
@@ -1191,13 +1192,13 @@
 				8AD80A5119C82FCF8D81924FC86E4F7F /* JSMessageAlertHandler.h in Headers */,
 				8C1B2B022DD26F4C571046D0D0DD803D /* JSMessageLocationHandler.h in Headers */,
 				75F035F4D68681F09F7A594070D8A5EC /* JSMessageMediaHandler.h in Headers */,
+				2DFBCC3129504DC4009296BA /* LLNavigationBackButton.h in Headers */,
 				3F0E150AD3B66BFEB95843B086E01B05 /* JSMessageOtherHandler.h in Headers */,
 				C770EFC72F29945CDD62E06E6A4DA9FC /* JSMessageScanQRCodeHandler.h in Headers */,
 				65CBD5B8D3C29FF8CEB39561CC918BE7 /* JSMessageToastHandler.h in Headers */,
 				95DF68D81C73AACB712E87B3B1DD7500 /* LLImagePicker.h in Headers */,
 				AB46F95F367C0F31809C36F95992CD11 /* LLJSMessageNavigationBarHandler.h in Headers */,
 				0FA7F8FFC007192290ADE440569C0E7C /* LLJSMessageNavigationBarTitleHandler.h in Headers */,
-				C180F5C340CCF6897E3E8B4121FE1566 /* LLModalTransition.h in Headers */,
 				6B685DC5207DD8B578B81C256C6A8DA9 /* LLNetManager.h in Headers */,
 				410F433D1D120BC3C0B90A273EAA51B9 /* LLNetReachability.h in Headers */,
 				DD60FFDCAC4CE2390517E0D8DEF3DB80 /* LLOAuthManager.h in Headers */,
@@ -1206,7 +1207,6 @@
 				2ED517DA89EE747499B412AC6297A4FC /* LLWebJSBridgeManage.h in Headers */,
 				7ACE7EE31DF8B0D25DD024804C6ABD9B /* LLWebKeyChainSaver.h in Headers */,
 				0243C62D1547CB1FE00E092121903A09 /* LLWebLocationManager.h in Headers */,
-				49408329CC1742A8EFD683593582F846 /* LLWebNavigationBar.h in Headers */,
 				5E4C97F333C309CEFDA0E8EB6CF82110 /* LLWebNavigationController.h in Headers */,
 				615A298248B1CE36A1CE44752F7EEB54 /* LLWebViewContainer.h in Headers */,
 				BB26F7D4BFFAA8527D1EF067480C06FA /* LLWebViewController.h in Headers */,
@@ -1231,10 +1231,12 @@
 				285BD80B5087DE4BA484A930C442C69D /* SJAlertViewProduce-Protocol.h in Headers */,
 				74261A2B46469332B5B5B3C5D3F65755 /* SJNormalAlertView.h in Headers */,
 				FADFDCF981D5315906A9545FFE29CD90 /* split.h in Headers */,
+				2DFBCC3229504DC4009296BA /* LLModalTransition.h in Headers */,
 				C204E157E96BDCE5F6684109504C33FA /* SystemMapManager.h in Headers */,
 				0BC6642E1A940B6B580B39DBF6F3FF07 /* TOActivityCroppedImageProvider.h in Headers */,
 				28C19608CBB4C8B561AB6BBB4A42BF72 /* TOCropOverlayView.h in Headers */,
 				E9010531BF0A5E01256BE7296333487C /* TOCroppedImageAttributes.h in Headers */,
+				2DFBCC3329504DC4009296BA /* LLWebNavigationBar.h in Headers */,
 				70602D376996025F72FE0E42C913ED62 /* TOCropScrollView.h in Headers */,
 				B2D248F97B95EA0734EA161C2D2A92FF /* TOCropToolbar.h in Headers */,
 				A2B9E3DEC459D43F927F6BC8F5DD9FA0 /* TOCropView.h in Headers */,
@@ -1452,7 +1454,6 @@
 				17D0E1F4341BEC69209E691065506AF4 /* LLImagePicker.m in Sources */,
 				2B5B6585A3DD40173C21C5043522C1F4 /* LLJSMessageNavigationBarHandler.m in Sources */,
 				F76C944EF55F599F597397A9D2580093 /* LLJSMessageNavigationBarTitleHandler.m in Sources */,
-				D7D3082CE10272777A91091D42164D31 /* LLModalTransition.m in Sources */,
 				D46D97E41F80DCC1C769A20BAF5CB054 /* LLNetManager.m in Sources */,
 				9B385B0B250CFC20274DA8054D86B90D /* LLNetReachability.m in Sources */,
 				D3A7EA7C2AE876D51464C8A64949A437 /* LLOAuthManager.m in Sources */,
@@ -1461,7 +1462,6 @@
 				ED87C3A8E82D48741C390C3000C6ED8A /* LLWebJSBridgeManage.m in Sources */,
 				C641CFA8512AFBD6F5610B5C90CA5040 /* LLWebKeyChainSaver.m in Sources */,
 				26E7C2FD3160293A84FA20C595B391E2 /* LLWebLocationManager.m in Sources */,
-				07F3D46B0978390656505AD4B680C84C /* LLWebNavigationBar.m in Sources */,
 				E22310B8A6D85B7AED34EB0A3E5709CB /* LLWebNavigationController.m in Sources */,
 				03BF987FB5668AD7173B0DD5A19601D9 /* LLWebViewController.m in Sources */,
 				8074845351673A7A7E9F94292A38E52C /* LLWebViewHelper.m in Sources */,
@@ -1472,6 +1472,7 @@
 				5DF085EA24EE74B1B5875BE3CA4B4F11 /* NSURL+PATool.m in Sources */,
 				7219F40F16719B6CD43965F60AAE91A0 /* PAWebNavigationController.m in Sources */,
 				09E44EE9A921809CB383DCAFC3A81289 /* PAWebView+UIDelegate.m in Sources */,
+				2DFBCC3629504DC4009296BA /* LLWebNavigationBar.m in Sources */,
 				CDEB58E60907A1B386276CF1F170D451 /* PAWebView.m in Sources */,
 				B33825DB1B25A3074925EA6ECF78B764 /* PAWKPanGestureRecognizer.m in Sources */,
 				90EAD03FF19B8A02BB19F94F22079EFB /* QRCScanner.m in Sources */,
@@ -1498,6 +1499,7 @@
 				C3217E8E40EC1CA2ADC53A78CD2EABBE /* UIColor+Hex.m in Sources */,
 				FC41051D4FB98043A6FC6662DDD362A9 /* UIImage+Compress.m in Sources */,
 				88086F6A06780CDADB67A6F7DC2FF62A /* UIImage+CropRotate.m in Sources */,
+				2DFBCC3429504DC4009296BA /* LLNavigationBackButton.m in Sources */,
 				D7624679BBACDF15DF6D24F91B6BAAF4 /* UIImage+MDQRCode.m in Sources */,
 				9BE5E8E872BF4D4573221613F76C1F63 /* UILabel+ImagePicker.m in Sources */,
 				8D856769B5E461380D6037B473D232BD /* UINavigationItem+AttributeTitle.m in Sources */,
@@ -1506,6 +1508,7 @@
 				A2690CECCA77248CB3FFC06B2DE5ECB4 /* urlschemeModel.m in Sources */,
 				9D28740B45A54510024CC1C072C0942E /* WebviewComponent-dummy.m in Sources */,
 				6212EC7DB109EB9C899338F14F73BF6D /* WKBaseWebView.m in Sources */,
+				2DFBCC3529504DC4009296BA /* LLModalTransition.m in Sources */,
 				461615A8EFFEC7EBD8EE1912ED069518 /* WKJSFunction.m in Sources */,
 				D3EC6895321F749F5C8E1A8A660DD315 /* WKScanQRCode.m in Sources */,
 				3CCBA63CB27D6E2C0CCEDC58301CBA2D /* WKWebView+PAWebCache.m in Sources */,
@@ -1840,8 +1843,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

@@ -12,6 +12,7 @@
 
 //压缩图片
 + (NSData *)compressImage:(UIImage *)image toByte:(NSUInteger)maxLength;
++ (NSData *)compressImageData:(NSData *)imageData toByte:(NSUInteger)maxLength;
 /**
  @abstract 压缩图片并实时回调图片压缩状态
  @param image 带压缩图片

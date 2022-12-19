@@ -24,8 +24,18 @@
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.interactivePopGestureRecognizer.delegate = (id)weakself;
     }
+    self.navigationBar.hidden = YES;
+    self.navigationBar.alpha = 0;
+    [self.navigationBar setBackgroundImage:[self imageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.shadowImage = [UIImage new];
 }
-
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    self.navigationBar.hidden = YES;
+    self.navigationBar.alpha = 0;
+    [self.navigationBar setBackgroundImage:[self imageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.shadowImage = [UIImage new];
+}
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer == self.interactivePopGestureRecognizer) {
@@ -52,7 +62,25 @@
 - (UIViewController *)childViewControllerForStatusBarHidden {
     return self.topViewController;
 }
-
+- (UIImage *)imageWithColor:(UIColor *)color {
+    
+    CGRect rect =CGRectMake(0.0f,0.0f,1.0f,1.0f);
+    
+    UIGraphicsBeginImageContext(rect.size);
+    
+    CGContextRef context =UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    
+    CGContextFillRect(context, rect);
+    
+    UIImage *image =UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return image;
+    
+}
 
 - (void)dealloc {
     

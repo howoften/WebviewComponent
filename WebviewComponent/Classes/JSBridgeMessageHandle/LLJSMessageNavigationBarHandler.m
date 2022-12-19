@@ -8,7 +8,7 @@
 #import "LLJSMessageNavigationBarHandler.h"
 #import "LLWebViewHelper.h"
 #import "UINavigationItem+AttributeTitle.h"
-
+#import "LLWebNavigationBar.h"
 //#import "LLNavigationBar.h"
 //#import "LLWebviewLoader.h"
 //#import "LLWebViewController.h"
@@ -46,35 +46,32 @@ void(^moreAction)(void) = NULL;
 
 + (void)autoNavigationBarTitleForViewController:(UIViewController<LLJSMessageNavigationActionDelegate> *)viewController titleChange:(Change *)change {
     *change = ^(NSString *title) {
-        if (viewController.navigationItem.title.length < 1 && viewController.constantTitle.length < 1) {
-            [viewController.navigationItem setAttributeTitle:[[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:ScaleByWidth(18) weight:UIFontWeightMedium], NSForegroundColorAttributeName:[UIColor blackColor]}]];
+        if (viewController.navigationBar.title.length < 1 && viewController.constantTitle.length < 1) {
+            [viewController.navigationBar setAttributeTitle:[[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:ScaleByWidth(18) weight:UIFontWeightMedium], NSForegroundColorAttributeName:[UIColor blackColor]}]];
         }
     };
 }
 
 + (void)configNavigationBarRightItemForViewController:(UIViewController<LLJSMessageNavigationActionDelegate> *)viewController mode:(NSUInteger)mode {
-    if (!viewController.navigationItem.rightBarButtonItem || viewController.rightBarMode != mode) {
+    if (!viewController.navigationBar.rightItems.count || viewController.rightBarMode != mode) {
         viewController.rightBarMode = mode;
-        UIView *rightBGView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        CGFloat position_x = 0;
+        NSMutableArray *rightItems = [NSMutableArray arrayWithCapacity:2];
         if (viewController.shouldShare) {
             UIButton *more = [UIButton buttonWithType:UIButtonTypeCustom];
             [more setImage:[UIImage imageWithContentsOfFile:[LLWebViewHelper pngImagefilePathForName:mode == 0 ? @"web_nav_more_dark":@"web_nav_more_light"]] forState:UIControlStateNormal];
-            more.frame = CGRectMake(position_x, 0, 36, 44);
+            more.frame = CGRectMake(0, 0, 36, 44);
             [more addTarget:self action:@selector(moreAction) forControlEvents:UIControlEventTouchUpInside];
-            position_x = CGRectGetMaxY(more.frame);
-            [rightBGView addSubview:more];
+            [rightItems addObject:more];
         }
         
         UIButton *close = [UIButton buttonWithType:UIButtonTypeCustom];
         [close setImage:[UIImage imageWithContentsOfFile:[LLWebViewHelper pngImagefilePathForName:mode == 0 ? @"web_nav_close_dark":@"web_nav_close_light"]] forState:UIControlStateNormal];
-        close.frame = CGRectMake(position_x, 0, 36, 44);
+        close.frame = CGRectMake(0, 0, 36, 44);
+        [rightItems addObject:close];
         [close addTarget:self action:@selector(closeWebPage) forControlEvents:UIControlEventTouchUpInside];
         //
     
-        [rightBGView addSubview:close];
-        rightBGView.frame = CGRectMake(0, 0, CGRectGetMaxX(close.frame), CGRectGetHeight(close.frame));
-        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBGView];
+        viewController.navigationBar.rightItems = rightItems;
         
     }
         [self setStatusBarStyle:mode targetViewController:viewController];
@@ -109,18 +106,18 @@ void(^moreAction)(void) = NULL;
         }
     }
     if ((webView.backForwardList.backList.count > 0 || visiblePage > 1) ) {
-        if (viewController.navigationItem.leftBarButtonItem == nil || viewController.leftBarMode != mode) {
+        if (!viewController.navigationBar.leftItems.count || viewController.leftBarMode != mode) {
             viewController.leftBarMode = mode;
             UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [backButton setImage:[UIImage imageWithContentsOfFile:[LLWebViewHelper pngImagefilePathForName:mode == 0 ? @"web_nav_back_dark":@"web_nav_back_light"]] forState:UIControlStateNormal];
             backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             [backButton addTarget:self.class action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
             backButton.frame = CGRectMake(0, 0, 44, 40);
-            viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+            viewController.navigationBar.backButton = backButton;
         }
         
     }else{
-        viewController.navigationItem.leftBarButtonItem = nil;
+        viewController.navigationBar.leftItems = nil;
     }
     
     
@@ -128,17 +125,17 @@ void(^moreAction)(void) = NULL;
 
 + (void)manualDecreaseWeviviewBackItemListForViewController:(UIViewController<LLJSMessageNavigationActionDelegate> *)viewController webView:(WKWebView *)webView {
     if (webView.backForwardList.backList.count-1 > 0) {
-        if (viewController.navigationItem.leftBarButtonItem == nil) {
+        if (!viewController.navigationBar.rightItems.count) {
             UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [backButton setImage:[UIImage imageWithContentsOfFile:[LLWebViewHelper pngImagefilePathForName:viewController.leftBarMode == 0 ? @"web_nav_back_dark":@"web_nav_back_light"]] forState:UIControlStateNormal];
             backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             [backButton addTarget:self.class action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
             [backButton sizeToFit];
-            viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+            viewController.navigationBar.leftItems = @[backButton];
         }
         
     }else{
-        viewController.navigationItem.leftBarButtonItem = nil;
+        viewController.navigationBar.leftItems = nil;
     }
 }
 

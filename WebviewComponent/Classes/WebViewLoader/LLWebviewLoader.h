@@ -11,6 +11,10 @@ typedef NS_ENUM(NSUInteger, WebViewNavigationBarStyle) {
     WebViewNavigationBarStyleDark = 0,
     WebViewNavigationBarStyleLight
 };
+extern NSString *const ViewControllerModalStyleDefault;
+extern NSString *const ViewControllerModalStyleMask;
+extern NSString *const ViewControllerModalStyleFold;
+extern NSString *const ViewControllerModalStyleLikeNavigation;
 
 @protocol LLWebviewLoaderDelegate <NSObject>
 @required
@@ -20,9 +24,9 @@ typedef NS_ENUM(NSUInteger, WebViewNavigationBarStyle) {
 
 @interface LLWebviewLoader : NSObject
 
-+ (void)loadWebViewByURL:(NSURL *)URL fromSourceViewController:(UIViewController *)sourceViewController title:(NSString *)title shouleShare:(BOOL)shouldShare;
++ (void)loadWebViewByURL:(NSURL *)URL fromSourceViewController:(UIViewController *)sourceViewController title:(NSString *)title shouleShare:(BOOL)shouldShare transitionStyle:(NSString *)transitionStyle;
 
-+ (void)loadWebViewByLocalFile:(NSString *)filePath fromSourceViewController:(UIViewController *)sourceViewController title:(NSString *)title shouleShare:(BOOL)shouldShare;
++ (void)loadWebViewByLocalFile:(NSString *)filePath fromSourceViewController:(UIViewController *)sourceViewController title:(NSString *)title shouleShare:(BOOL)shouldShare transitionStyle:(NSString *)transitionStyle;
 
 + (void)setWebviewSocialShareDelegate:(id<LLWebviewLoaderDelegate>)delegate;
 

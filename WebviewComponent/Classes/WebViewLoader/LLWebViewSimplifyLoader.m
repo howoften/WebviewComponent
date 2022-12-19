@@ -8,6 +8,7 @@
 #import "PAWebView.h"
 #import "LLWebViewSimplifyLoader.h"
 #import "LLWebviewLoader.h"
+#import "LLModalTransition.h"
 #import "UINavigationItem+AttributeTitle.h"
 
 @interface LLWebViewSimplifyLoader ()
@@ -40,14 +41,14 @@
         [webView setPaprogressTintColor:[self share].progressTintColor];
         [webView setPaprogressTrackTintColor:[self share].progressTrackTintColor];
         webView.edgesForExtendedLayout = UIRectEdgeNone;
-        webView.openCache = YES;  //打开缓存
+        webView.openCache = YES;  //打开缓存z
         [webView loadRequestURL:URL];
         if (title.length > 0) {
             webView.navigationItem.attributeTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18*[UIScreen mainScreen].bounds.size.width/375.0 weight:UIFontWeightMedium], NSForegroundColorAttributeName:[UIColor blackColor]}];
         }
         [(UINavigationController *)nav pushViewController:webView animated:YES];
     }else {
-        [LLWebviewLoader loadWebViewByURL:URL fromSourceViewController:sourceViewController title:title shouleShare:NO];
+        [LLWebviewLoader loadWebViewByURL:URL fromSourceViewController:sourceViewController title:title shouleShare:NO transitionStyle:ViewControllerModalStyleLikeNavigation];
     }
 }
 
@@ -72,7 +73,7 @@
         [webView loadLocalHTMLWithFilePath: filePath];
         [(UINavigationController *)nav pushViewController:webView animated:YES];
     }else {
-        [LLWebviewLoader loadWebViewByLocalFile:filePath fromSourceViewController:sourceViewController title:title shouleShare:NO];
+        [LLWebviewLoader loadWebViewByLocalFile:filePath fromSourceViewController:sourceViewController title:title shouleShare:NO transitionStyle:ViewControllerModalStyleLikeNavigation];
     }
 }
 

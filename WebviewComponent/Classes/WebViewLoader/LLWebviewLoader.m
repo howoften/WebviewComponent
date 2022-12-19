@@ -36,7 +36,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shareInstance = [[LLWebviewLoader alloc] init];
-        [LLWebNavigationBar contributeForViewController:[LLWebViewController class] navigationController:[LLWebNavigationController class]];
         [LLJSMessageNavigationBarHandler setNavigationBarMessageDelegate:shareInstance];
         [LLJSMessageNavigationBarHandler setWebViewSocialShareMessageDelegate:shareInstance];
 //        shareInstance.loadedURLArray = [NSMutableArray arrayWithCapacity:0];
@@ -53,14 +52,14 @@
     return shareInstance;
 }
 
-+ (void)loadWebViewByURL:(NSURL *)URL fromSourceViewController:(UIViewController *)sourceViewController title:(NSString *)title shouleShare:(BOOL)shouldShare {
++ (void)loadWebViewByURL:(NSURL *)URL fromSourceViewController:(UIViewController *)sourceViewController title:(NSString *)title shouleShare:(BOOL)shouldShare transitionStyle:(NSString *)transitionStyle {
     NSAssert([URL isKindOfClass:[NSURL class]], @"[LLWebviewLoader loadWebViewByURL:fromSourceViewController:] fail, because 'URL' is invalid");
     NSAssert(![[LLWebViewHelper topViewController] isKindOfClass:[LLWebNavigationController class]], @"[LLWebviewLoader loadWebViewByURL:fromSourceViewController:] fail, because there is a WebViewVontroller in the screen");
     
     [self shareInstance].currentWebNavigationController = [[self shareInstance] destinationViewControllerForWebURL:URL title:title shouldShare:shouldShare];
     [[self shareInstance].webNavigationControllerArray addObject:[self shareInstance].currentWebNavigationController];
     
-    LLModalTransition *transition =[LLModalTransition transitionFromModalStyle:ViewControllerModalStyleFold presentedViewController:[self shareInstance].currentWebNavigationController presentingViewController:sourceViewController];
+    LLModalTransition *transition =[LLModalTransition transitionFromModalStyle:transitionStyle presentedViewController:[self shareInstance].currentWebNavigationController presentingViewController:sourceViewController];
     if (transition) {
         [[self shareInstance].originalStatusBarStyles addObject:@([UIApplication sharedApplication].statusBarStyle)];
         [[self shareInstance].modalTransitions setObject:transition forKey:[NSString stringWithFormat:@"%p", [self shareInstance].currentWebNavigationController]];
@@ -75,14 +74,14 @@
     
 }
 
-+ (void)loadWebViewByLocalFile:(NSString *)filePath fromSourceViewController:(UIViewController *)sourceViewController title:(NSString *)title shouleShare:(BOOL)shouldShare {
++ (void)loadWebViewByLocalFile:(NSString *)filePath fromSourceViewController:(UIViewController *)sourceViewController title:(NSString *)title shouleShare:(BOOL)shouldShare transitionStyle:(NSString *)transitionStyle {
     NSAssert([filePath isKindOfClass:[NSString class]], @"[LLWebviewLoader loadWebViewByLocalFile:fromSourceViewController:] fail, because 'fileName' is invalid");
     NSAssert(![[LLWebViewHelper topViewController] isKindOfClass:[LLWebNavigationController class]], @"[LLWebviewLoader loadWebViewByURL:fromSourceViewController:] fail, because there is a WebViewVontroller in the screen");
     
     [self shareInstance].currentWebNavigationController = [[self shareInstance] destinationViewControllerForWebFile:filePath title:title shouldShare:shouldShare];
     [[self shareInstance].webNavigationControllerArray addObject:[self shareInstance].currentWebNavigationController];
     
-    LLModalTransition *transition =[LLModalTransition transitionFromModalStyle:ViewControllerModalStyleFold presentedViewController:[self shareInstance].currentWebNavigationController presentingViewController:sourceViewController];
+    LLModalTransition *transition =[LLModalTransition transitionFromModalStyle:transitionStyle presentedViewController:[self shareInstance].currentWebNavigationController presentingViewController:sourceViewController];
     if (transition) {
         [[self shareInstance].originalStatusBarStyles addObject:@([UIApplication sharedApplication].statusBarStyle)];
         [[self shareInstance].modalTransitions setObject:transition forKey:[NSString stringWithFormat:@"%p", [self shareInstance].currentWebNavigationController]];

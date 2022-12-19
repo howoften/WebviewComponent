@@ -8,10 +8,7 @@
 
 
 #import "LLViewController.h"
-#import <LLWebviewLoader.h>
-#import <LLWebJSBridgeManage.h>
-#import <LLOAuthManager.h>
-#import <LLWebViewSimplifyLoader.h>
+#import <LLWebViewContainer.h>
 
 @interface LLViewController ()<LLWebViewOAuthDelegate, LLWebviewLoaderDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *sessionID;
@@ -40,13 +37,13 @@
     [LLWebviewLoader setProgressBarTintColor:[UIColor redColor]];
     [LLWebviewLoader setProgressBarTrackTintColor:[UIColor blackColor]];
     if ([self.url.text length] > 0) {
-        [LLWebviewLoader loadWebViewByURL:[NSURL URLWithString:self.url.text] fromSourceViewController:self.navigationController title:nil shouleShare:YES];
+        [LLWebviewLoader loadWebViewByURL:[NSURL URLWithString:self.url.text] fromSourceViewController:self.navigationController title:nil shouleShare:YES transitionStyle:ViewControllerModalStyleFold];
     }else {
 //    [LLWebviewLoader loadWebViewByURL:[NSURL URLWithString:@"https://find.test.brightcns.cn/#/OauthPage"] fromSourceViewController:self.navigationController title:nil shouleShare:YES];
     
-//    [LLWebviewLoader loadWebViewByURL:[NSURL URLWithString:@"http://www.windysummer.cn:3001/dist/index.html#/"] fromSourceViewController:self.navigationController title:nil shouleShare:YES];
+        [LLWebviewLoader loadWebViewByURL:[NSURL URLWithString:self.url.placeholder] fromSourceViewController:self.navigationController title:nil shouleShare:YES transitionStyle:ViewControllerModalStyleFold];
 //    [LLWebViewSimplifyLoader loadWebViewByURL:[NSURL URLWithString:@"https://www.baidu.com"] webViewTitle:@"weqweqwqwwqrqwerqwewerqweqrqwwerqwqerwqerqwerqwerqwqewrq" fromSourceViewController:self.navigationController];
-        [LLWebviewLoader loadWebViewByLocalFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"] fromSourceViewController:self.navigationController title:@"Example" shouleShare:YES];
+//        [LLWebviewLoader loadWebViewByLocalFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"] fromSourceViewController:self.navigationController title:@"Example" shouleShare:YES];
 //    [LLWebViewSimplifyLoader loadWebViewByFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"] webViewTitle:@"hello" fromSourceViewController:self.navigationController];
 //    [LLWebviewLoader loadWebViewByURL:[NSURL URLWithString:@"http://windysummer.cn:3001/dist2/index.html#/"] fromSourceViewController:self.navigationController title:nil shouleShare:YES];
     }

@@ -19,6 +19,7 @@
 NSString *const ViewControllerModalStyleDefault = @"ViewControllerModalStyleDefault";
 NSString *const ViewControllerModalStyleMask = @"ViewControllerModalStyleMask";
 NSString *const ViewControllerModalStyleFold = @"ViewControllerModalStyleFold";
+NSString *const ViewControllerModalStyleLikeNavigation = @"ViewControllerModalStyleLikeNavigation";
 
 @implementation LLModalTransition
 
@@ -35,11 +36,11 @@ NSString *const ViewControllerModalStyleFold = @"ViewControllerModalStyleFold";
 
 ///负责过渡效果
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold]) return self;
+    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold] || [self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) return self;
     return nil;
 }
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold]) return self;
+    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold] || [self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) return self;
     return nil;
 }
 
@@ -47,6 +48,7 @@ NSString *const ViewControllerModalStyleFold = @"ViewControllerModalStyleFold";
     if ([transitionContext isAnimated]) {
         if([self.modalStyle isEqualToString:ViewControllerModalStyleMask]) return 0;
         if([self.modalStyle isEqualToString:ViewControllerModalStyleFold]) return 0.3;
+        if([self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) return 0.35;
     }
     
     return 0;
@@ -126,6 +128,41 @@ NSString *const ViewControllerModalStyleFold = @"ViewControllerModalStyleFold";
             }];
            
         }
+    }else if ([self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) {
+        if (isPresenting) {
+            [self forceCallViewControllerLifeSelector:fromViewController active:NO willDo:YES animated:[transitionContext isAnimated]];
+            [containerView addSubview:toView];
+            toView.transform = CGAffineTransformMakeTranslation(CGRectGetWidth(containerView.frame) - CGRectGetMinX(toView.frame), 0);
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:0.05 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                toView.transform = CGAffineTransformIdentity;
+            } completion:^(BOOL finished) {
+                [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+                [self forceCallViewControllerLifeSelector:fromViewController active:NO willDo:NO animated:[transitionContext isAnimated]];
+            }];
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+                fromView.transform = CGAffineTransformMakeTranslation(-CGRectGetWidth(fromView.frame)*0.45, 0);
+            } completion:^(BOOL finished) {
+                
+            }];
+        }else {
+            [self forceCallViewControllerLifeSelector:toViewController active:YES willDo:YES animated:[transitionContext isAnimated]];
+
+            [UIView animateWithDuration:[self transitionDuration:transitionContext]*0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                fromView.transform = CGAffineTransformMakeTranslation(CGRectGetWidth(containerView.frame) - CGRectGetMinX(fromView.frame), 0);
+            } completion:^(BOOL finished) {
+               
+            }];
+            
+            toView.transform = CGAffineTransformMakeTranslation(-CGRectGetWidth(toView.frame)*0.45, 0);
+            [UIView animateWithDuration:[self transitionDuration:transitionContext]*0.8 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0.05 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                toView.transform = CGAffineTransformIdentity;
+            } completion:^(BOOL finished) {
+                [fromView removeFromSuperview];
+                [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+                [self forceCallViewControllerLifeSelector:toViewController active:YES willDo:NO animated:[transitionContext isAnimated]];
+
+            }];
+        }
     }
 }
 
@@ -134,7 +171,7 @@ NSString *const ViewControllerModalStyleFold = @"ViewControllerModalStyleFold";
  */
 - (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source
 {
-    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold]) return self;
+    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold] || [self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) return self;
     return nil;
 }
 
@@ -179,12 +216,13 @@ NSString *const ViewControllerModalStyleFold = @"ViewControllerModalStyleFold";
     if (![style isKindOfClass:[NSString class]]) {
         return NO;
     }
-    return [style isEqualToString:ViewControllerModalStyleMask] || [style isEqualToString:ViewControllerModalStyleFold];
+    return [style isEqualToString:ViewControllerModalStyleMask] || [style isEqualToString:ViewControllerModalStyleFold] || [style isEqualToString:ViewControllerModalStyleLikeNavigation];
 }
 
 + (LLModalTransition *)transitionFromModalStyle:(NSString *)style presentedViewController:(UIViewController *)presentedViewController presentingViewController:(UIViewController *)presentingViewController {
     if ([self validModalStyle:style]) {
         LLModalTransition *transition = [[LLModalTransition alloc] initWithPresentedViewController:presentedViewController presentingViewController:presentingViewController];
+        presentedViewController.transitioningDelegate = transition;
         transition.modalStyle = style;
         return transition;
     }

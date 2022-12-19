@@ -29,6 +29,12 @@
         NSLog(@"compressed--%lu====%@", (unsigned long)data.length, NSStringFromCGSize(image.size));
         
     }
+    return [self compressImageData:data toByte:maxLength];
+}
++ (NSData *)compressImageData:(NSData *)imageData toByte:(NSUInteger)maxLength {
+    // Compress by quality
+    CGFloat compression = 1.0f;
+    NSData *data = imageData;
     
     UIImage *resultImage = [UIImage imageWithData:data];
     if (data.length < maxLength) return data;

@@ -26,7 +26,7 @@
             NSString *msg = nil;
             NSInteger code = 0;
             if ([LLWebViewHelper validHexColorCodeString:message[@"titleColor"]]) {
-                [topVC.navigationItem setAttributeTitle:[[NSAttributedString alloc] initWithString:message[@"title"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18*[UIScreen mainScreen].bounds.size.width/375.0 weight:UIFontWeightMedium], NSForegroundColorAttributeName:UICOLOR_FROM_HEX([[LLWebViewHelper convertHex2Dec:message[@"titleColor"]] integerValue])}]];
+                [topVC.navigationBar setAttributeTitle:[[NSAttributedString alloc] initWithString:message[@"title"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18*[UIScreen mainScreen].bounds.size.width/375.0 weight:UIFontWeightMedium], NSForegroundColorAttributeName:UICOLOR_FROM_HEX([[LLWebViewHelper convertHex2Dec:message[@"titleColor"]] integerValue])}]];
             }
             if ([LLWebViewHelper validHexColorCodeString:message[@"backgroundColor"]]) {
                 topVC.navigationBar.backgroundColor = UICOLOR_FROM_HEX([[LLWebViewHelper convertHex2Dec:message[@"backgroundColor"]] integerValue]);

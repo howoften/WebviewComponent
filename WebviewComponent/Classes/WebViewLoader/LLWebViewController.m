@@ -10,10 +10,11 @@
 #import "UINavigationItem+AttributeTitle.h"
 #import "LLWebViewHelper.h"
 #import "NSURL+PATool.h"
+#import "LLWebNavigationBar.h"
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
-#define kSafeAreaBottomMargin (([[UIApplication sharedApplication] statusBarFrame].size.height == 44 ? 34 : 0))
-#define kNavBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height + 44)
+#define kSafeAreaBottomMargin (self.navigationBar.statusBarHeight == 44 ? 34 : 0)
+#define kNavBarHeight (self.navigationBar.statusBarHeight + 44)
 
 @interface LLWebViewController ()<WKNavigationDelegate, WKUIDelegate>
 @property (nonatomic, weak)WKWebView *webview;
@@ -43,12 +44,12 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
         self.canBeVisible = YES;
         self.webview.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
         if (title.length > 0) {
-            self.navigationItem.attributeTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18*[UIScreen mainScreen].bounds.size.width/375 weight:UIFontWeightMedium], NSForegroundColorAttributeName:[UIColor blackColor]}];
+            self.navigationBar.attributeTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18*[UIScreen mainScreen].bounds.size.width/375 weight:UIFontWeightMedium], NSForegroundColorAttributeName:[UIColor blackColor]}];
             self.constantTitle = title;
         }
         if (@available(iOS 11.0, *)) {
-            self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
-//            self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight-self.webview.scrollView.contentInset.top, 0, kSafeAreaBottomMargin-self.webview.scrollView.contentInset.bottom, 0);
+            self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight, 0, kSafeAreaBottomMargin, 0);
         }else {
             self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight, 0, kSafeAreaBottomMargin, 0);
         }
@@ -77,13 +78,12 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
         self.canBeVisible = YES;
         self.webview.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
         if (title.length > 0) {
-            self.navigationItem.attributeTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18*[UIScreen mainScreen].bounds.size.width/375 weight:UIFontWeightMedium], NSForegroundColorAttributeName:[UIColor blackColor]}];
+            self.navigationBar.attributeTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18*[UIScreen mainScreen].bounds.size.width/375 weight:UIFontWeightMedium], NSForegroundColorAttributeName:[UIColor blackColor]}];
             self.constantTitle = title;
         }
         if (@available(iOS 11.0, *)) {
-            self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentScrollableAxes;
-
-            //            self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight-self.webview.scrollView.contentInset.top, 0, kSafeAreaBottomMargin-self.webview.scrollView.contentInset.bottom, 0);
+            self.webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight, 0, kSafeAreaBottomMargin, 0);
         }else {
             self.webview.scrollView.contentInset = UIEdgeInsetsMake(kNavBarHeight, 0, kSafeAreaBottomMargin, 0);
         }
@@ -124,7 +124,8 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
 #endif
-
+    self.navigationBar.contentInset = UIEdgeInsetsMake(0, 11, 0, 11);
+    self.navigationBar.rightItemSpacing = 3;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -173,7 +174,6 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 
 #pragma mark - WKNavigationDelegate >>>>>>>>>>>>>>>>
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    NSLog(@">>>>>>>>>>>>>>>%@", webView.URL);
     [self refreshWebviewVendor:webView.URL];
     self.webManager.currentURLString = webView.URL.absoluteString;
     if (self.navigationController.topViewController != self) {
@@ -191,6 +191,11 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
             decisionHandler(WKNavigationActionPolicyCancel);
         }else {
             decisionHandler(WKNavigationActionPolicyAllow);
+            if (navigationAction.targetFrame.isMainFrame) {
+                if (@available(iOS 10.0, *)) {
+                    [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{UIApplicationOpenURLOptionUniversalLinksOnly:@(YES)} completionHandler:nil];
+                }
+            }
         }
     }
     if ([self.delegate respondsToSelector:@selector(webViewDidReceiveNavigationAction:)]) {
@@ -251,7 +256,7 @@ NSString *const LLWebViewDidCloseNotification = @"LLWebViewDidCloseNotification"
 - (void)webviewOAuthDidFinishedWithRedirectURL:(NSString *)redirectURL {
     if (self.navigationController && [self.delegate respondsToSelector:@selector(viewControllerForForwardSkip:title:shouldShare:)]) {
         LLWebViewController *next = [self.delegate viewControllerForForwardSkip:[NSURL URLWithString:redirectURL] title:self.constantTitle shouldShare:self.shouldShare];
-        [next.navigationItem setHidesBackButton:self.navigationController.viewControllers.count < 2];
+        [next.navigationBar setHiddenBackButton:self.navigationController.viewControllers.count < 2];
         self.canBeVisible = NO;
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
         [self.navigationController pushViewController:next animated:YES];

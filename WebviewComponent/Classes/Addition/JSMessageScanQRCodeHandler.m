@@ -10,6 +10,7 @@
 #import "LLWebJSBridgeManage.h"
 #import "QRCScanner.h"
 #import "LLWebViewHelper.h"
+#import "LLWebNavigationBar.h"
 @interface JSMessageScanQRCodeHandler ()<LLWebJSBridgeMessageDelegate, QRCodeScanneDelegate>
 @property (nonatomic)UIStatusBarStyle originalStatusBarStyle;
 @property (nonatomic, strong)NSString *scanResult;
@@ -30,7 +31,7 @@
     backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [backButton sizeToFit];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationBar.leftItems = @[backButton];
     
     self.originalStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
     UILabel *title = [[UILabel alloc] init];
@@ -39,7 +40,7 @@
     title.textColor = [UIColor whiteColor];
     
     [title sizeToFit];
-    self.navigationItem.titleView = title;
+    self.navigationBar.titleView = title;
     
     QRCScanner *scanner = [[QRCScanner alloc]initQRCScannerWithView:self.view];
     scanner.frame = [UIScreen mainScreen].bounds;
