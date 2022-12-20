@@ -93,7 +93,23 @@
 }
 
 + (void)SafariOpenURL:(NSURL *)URL {
-    
+    if ([URL.scheme.lowercaseString hasPrefix:@"tel"]) {
+        NSString *phoneNumber = URL.absoluteString;
+        //提出无效字符
+        NSString *cleanedString =[[phoneNumber componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"]invertedSet]] componentsJoinedByString:@""];
+        NSString *escapedPhoneNumber = [cleanedString stringByAddingPercentEncodingWithAllowedCharacters: NSCharacterSet.URLQueryAllowedCharacterSet];
+        NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", escapedPhoneNumber]];
+        
+        UIWebView *mCallWebview = [[UIWebView alloc] initWithFrame:CGRectZero];
+        [UIApplication.sharedApplication.delegate.window addSubview:mCallWebview];
+        [mCallWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [mCallWebview removeFromSuperview];
+        });
+        return;
+    }
+        
 #ifdef IOS10BWK
     
     [[UIApplication sharedApplication] openURL:URL options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:^(BOOL success)
