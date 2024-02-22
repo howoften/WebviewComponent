@@ -33,6 +33,7 @@
 @property (nonatomic, readonly)CGFloat statusBarHeight;
 @property (nonatomic) BOOL hiddenBackButton;
 @property (nonatomic, strong) UIView *backButton;
+@property (nonatomic, strong) UIColor *backButtonColor;
 
 - (void)showAnimated:(BOOL)animated;
 - (void)hiddenAnimated:(BOOL)animated;
@@ -45,4 +46,5 @@
 @interface UIViewController (LLWebNavigationBar)
 @property (nonatomic, strong, readonly)LLWebNavigationBar *navigationBar;
 
+- (void)hiddenDefaultNavigationBar;
 @end

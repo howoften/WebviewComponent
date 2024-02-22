@@ -19,7 +19,7 @@
 NSString *const ViewControllerModalStyleDefault = @"ViewControllerModalStyleDefault";
 NSString *const ViewControllerModalStyleMask = @"ViewControllerModalStyleMask";
 NSString *const ViewControllerModalStyleFold = @"ViewControllerModalStyleFold";
-NSString *const ViewControllerModalStyleLikeNavigation = @"ViewControllerModalStyleLikeNavigation";
+NSString *const ViewControllerModalStyleLikeSystemNavigation = @"ViewControllerModalStyleLikeSystemNavigation";
 
 @implementation LLModalTransition
 
@@ -36,11 +36,11 @@ NSString *const ViewControllerModalStyleLikeNavigation = @"ViewControllerModalSt
 
 ///负责过渡效果
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold] || [self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) return self;
+    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold] || [self.modalStyle isEqualToString:ViewControllerModalStyleLikeSystemNavigation]) return self;
     return nil;
 }
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold] || [self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) return self;
+    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold] || [self.modalStyle isEqualToString:ViewControllerModalStyleLikeSystemNavigation]) return self;
     return nil;
 }
 
@@ -48,7 +48,7 @@ NSString *const ViewControllerModalStyleLikeNavigation = @"ViewControllerModalSt
     if ([transitionContext isAnimated]) {
         if([self.modalStyle isEqualToString:ViewControllerModalStyleMask]) return 0;
         if([self.modalStyle isEqualToString:ViewControllerModalStyleFold]) return 0.3;
-        if([self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) return 0.35;
+        if([self.modalStyle isEqualToString:ViewControllerModalStyleLikeSystemNavigation]) return 0.35;
     }
     
     return 0;
@@ -128,9 +128,10 @@ NSString *const ViewControllerModalStyleLikeNavigation = @"ViewControllerModalSt
             }];
            
         }
-    }else if ([self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) {
+    }else if ([self.modalStyle isEqualToString:ViewControllerModalStyleLikeSystemNavigation]) {
         if (isPresenting) {
             [self forceCallViewControllerLifeSelector:fromViewController active:NO willDo:YES animated:[transitionContext isAnimated]];
+            containerView.frame = CGRectMake(0, 0, CGRectGetWidth(containerView.frame), CGRectGetHeight(containerView.frame) + (CGRectGetMinY(containerView.frame)-0));
             [containerView addSubview:toView];
             toView.transform = CGAffineTransformMakeTranslation(CGRectGetWidth(containerView.frame) - CGRectGetMinX(toView.frame), 0);
             [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:0.05 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -138,6 +139,7 @@ NSString *const ViewControllerModalStyleLikeNavigation = @"ViewControllerModalSt
             } completion:^(BOOL finished) {
                 [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                 [self forceCallViewControllerLifeSelector:fromViewController active:NO willDo:NO animated:[transitionContext isAnimated]];
+                fromView.transform = CGAffineTransformIdentity;
             }];
             [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
                 fromView.transform = CGAffineTransformMakeTranslation(-CGRectGetWidth(fromView.frame)*0.45, 0);
@@ -171,7 +173,7 @@ NSString *const ViewControllerModalStyleLikeNavigation = @"ViewControllerModalSt
  */
 - (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source
 {
-    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold] || [self.modalStyle isEqualToString:ViewControllerModalStyleLikeNavigation]) return self;
+    if ([self.modalStyle isEqualToString:ViewControllerModalStyleMask] || [self.modalStyle isEqualToString:ViewControllerModalStyleFold] || [self.modalStyle isEqualToString:ViewControllerModalStyleLikeSystemNavigation]) return self;
     return nil;
 }
 
@@ -216,7 +218,7 @@ NSString *const ViewControllerModalStyleLikeNavigation = @"ViewControllerModalSt
     if (![style isKindOfClass:[NSString class]]) {
         return NO;
     }
-    return [style isEqualToString:ViewControllerModalStyleMask] || [style isEqualToString:ViewControllerModalStyleFold] || [style isEqualToString:ViewControllerModalStyleLikeNavigation];
+    return [style isEqualToString:ViewControllerModalStyleMask] || [style isEqualToString:ViewControllerModalStyleFold] || [style isEqualToString:ViewControllerModalStyleLikeSystemNavigation];
 }
 
 + (LLModalTransition *)transitionFromModalStyle:(NSString *)style presentedViewController:(UIViewController *)presentedViewController presentingViewController:(UIViewController *)presentingViewController {

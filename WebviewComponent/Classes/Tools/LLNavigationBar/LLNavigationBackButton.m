@@ -12,20 +12,21 @@
 @property (nonatomic)CAShapeLayer *drawLayer;
 @end
 @implementation LLNavigationBackButton
-const CGRect defaultRect = {{0, 0}, {25, 20}};
+const CGRect defaultRect = {{0, 0}, {25, 23}};
 const CGRect negativeRect = {{0, 0}, {-111.222, -111.222}};
 - (instancetype)init {
     return [self initWithFrame:negativeRect];
 }
 - (instancetype)initWithFrame:(CGRect)frame {
-    [self initialState];
     if (CGRectEqualToRect(frame, negativeRect)) {
-        self.intrinsicSize = defaultRect.size;
-        return [super initWithFrame:defaultRect];
+        frame = defaultRect;
     }
-    self.intrinsicSize = frame.size;
-    return [super initWithFrame:frame];
-
+    if (self = [super initWithFrame:frame]) {
+        self.intrinsicSize = frame.size;
+        [self initialState];
+        self.clipsToBounds = YES;
+    }
+    return self;
 }
 
 - (void)initialState {
@@ -46,9 +47,9 @@ const CGRect negativeRect = {{0, 0}, {-111.222, -111.222}};
     _drawLayer.frame = rect;
     
     UIBezierPath *shape = [UIBezierPath bezierPath];
-    [shape moveToPoint:CGPointMake(CGRectGetHeight(rect)/2*tan((90-self.strokeAngle/2)/180*M_PI), 0)];
-    [shape addLineToPoint:CGPointMake(0, CGRectGetHeight(rect)/2)];
-    [shape addLineToPoint:CGPointMake(CGRectGetHeight(rect)/2*tan((90-self.strokeAngle/2)/180*M_PI), CGRectGetHeight(rect))];
+    [shape moveToPoint:CGPointMake(CGRectGetHeight(rect)/2*tan((90-self.strokeAngle/2)/180*M_PI), self.lineWidth)];
+    [shape addLineToPoint:CGPointMake(self.lineWidth, CGRectGetHeight(rect)/2)];
+    [shape addLineToPoint:CGPointMake(CGRectGetHeight(rect)/2*tan((90-self.strokeAngle/2)/180*M_PI), CGRectGetHeight(rect) - self.lineWidth)];
     _drawLayer.path = shape.CGPath;
     _drawLayer.strokeColor = self.strokeColor.CGColor;
     _drawLayer.fillColor = UIColor.clearColor.CGColor;
@@ -61,7 +62,7 @@ const CGRect negativeRect = {{0, 0}, {-111.222, -111.222}};
     
 }
 - (void)setFrame:(CGRect)frame {
-    if (CGSizeEqualToSize(frame.size, self.intrinsicSize)) {
+    if (!CGSizeEqualToSize(frame.size, self.intrinsicSize)) {
         self.intrinsicSize = frame.size;
         [self invalidateIntrinsicContentSize];
     }

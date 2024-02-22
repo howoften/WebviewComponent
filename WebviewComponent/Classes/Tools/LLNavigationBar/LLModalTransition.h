@@ -11,7 +11,7 @@
 extern NSString *const ViewControllerModalStyleDefault;
 extern NSString *const ViewControllerModalStyleMask;
 extern NSString *const ViewControllerModalStyleFold;
-extern NSString *const ViewControllerModalStyleLikeNavigation;
+extern NSString *const ViewControllerModalStyleLikeSystemNavigation;
 
 
 @interface LLModalTransition : UIPresentationController<UIViewControllerTransitioningDelegate>
